@@ -62,7 +62,7 @@
 
 
 
-<form action="salesrecipts" method="POST" class="post-form">
+<form action="{% url 'contra' %}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
