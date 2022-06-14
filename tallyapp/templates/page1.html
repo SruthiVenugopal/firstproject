@@ -1,204 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gateway tally</title>
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            box-sizing: border-box;
-        }
-        
-            
-        
-        table,th,td
-{
-    border-collapse: collapse;
-    text-align: center;
-}
-table
-{
-    width: 100%;
-   
-}
+{% extends 'index.html' %}
+{% block body %}
+{% load static %}
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    var i = 1;
+    $("#add_row").click(function() {
+      b = i - 1;
+      $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
+      $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+      i++;
+    });
+    $("#delete_row").click(function() {
+      if (i > 1) {
+        $("#addr" + (i - 1)).html('');
+        i--;
+      }
+      calc();
+    });
+
+    $('#tab_logic tbody').on('keyup change', function() {
+      calc();
+    });
+    $('#tax').on('keyup change', function() {
+      calc_total();
+    });
+  });
+
+  function calc() {
+    $('#tab_logic tbody tr').each(function(i, element) {
+      var html = $(this).html();
+      if (html != '') {
+        var qty = $(this).find('.qty').val();
+        var price = $(this).find('.price').val();
+        var tax = $(this).find('.tax').val();
+        $(this).find('.total').val(qty * price);
+        $(this).find('.taxamount').val((qty * price) * (tax / 100));
+
+        calc_total();
+      }
+    });
+  }
+
+  function calc_total() {
+    total = 0;
+    $('.total').each(function() {
+      total += parseFloat($(this).val());
+    });
+    taxamount = 0;
+    $('.taxamount').each(function() {
+      taxamount += parseFloat($(this).val());
+    });
+    $('#sub_total').val(parseFloat(total.toFixed(2)));
+    $('#tax_amount').val(parseFloat(taxamount.toFixed(2)));
+    $('#total_amount').val(parseFloat((taxamount + total).toFixed(2)));
+  }
+</script>
 
 
-th
-{
-   
-    border-top: 1.5px solid rgb(121, 186, 255);
-    font-size: 12px;
-    padding: 6px;
-    color: rgb(0, 104, 214);
-    border-bottom: 1.5px solid rgb(121, 186, 255);
-    
-}
-
-td
-{
-    padding: 8px;
-    font-size: 13px;
- 
-}
-.lists{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.titles{
-    width: 100%;
-    text-align: center;
-  
-    padding: 10px 5px 5px;
-    color: rgb(59, 159, 252);
-    font-size: 13px;
-
-}
-
-.btns{
-    color: black;
-    text-decoration: none;
-    
-  
-
-}
-.btns_prnt{
-    width: 100%;
-    text-align: center;
-    background-color: rgba(240, 248, 255, 0);
-    border: none;
-    padding: 6px;
-
-}
-.btns_prnt:hover{
-    background-color:orange;
-    color: white;
-}
-
-.btns_prnt2{
-    width: 100%;
-    text-align: start;
-    background-color: rgba(240, 248, 255, 0);
-    border: none;
-    padding: 3px;
-
-}
-.btns_prnt2:hover{
-    background-color:orange;
-    color: white;
-}
-.btns_2{
-    width: 100%;
-    text-align: end;
-    background-color: rgba(240, 248, 255, 0);
-    border: none;
-    padding: 6px;
-
-}
-.btns_2:hover{
-    background-color:rgb(181, 213, 240);
-    color: rgb(0, 9, 105);
-}
 
 
-.bg-model {
-	background-color: rgba(0, 0, 0, 0.3);
-
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-
-	display:none;
-	justify-content: center;
-	align-items: center;
-}
-.titles2{
-    width: 100%;
-    text-align: start;
-  
-    padding: 10px 5px 5px;
-    color: black;
-    font-size: 13px;
-
-}
-.close {
-	position: absolute;
-	top: 0;
-	right: 10px;
-	font-size: 30px;
-	color: rgb(255, 255, 255);
-	transform: rotate(45deg);
-	cursor: pointer;
-	
-}
-.close:hover {
-		color: rgb(255, 128, 0);
-	}
-    </style>
-</head>
-<body>
-    <div style="height: 100vh;">
-    <h5 style="color: rgb(0, 0, 65); background-color: rgb(142, 211, 250);padding: 5px;">Accounting Voucher Creation</h5>
-    <div style=" display:flex; height: 100%;">
-    <div style="border-right: .5px solid rgb(218, 218, 218); width:47%;  height: 100%; ">
-      <div style="display:flex; padding: 25px;">
-        <div style="width: 50%;">
-          <p style="color: rgb(0, 104, 214);padding:5px; font-size: 12px;">PAYMENT</p>
-          
-
-      </div>
-      <div style="width: 50%; text-align: end;">
-        <p style="color: rgb(0, 104, 214); padding:5px;font-size: 12px;"></p>
-        <h5 style="padding:5px;"></h5>
-
-      </div>
-      </div>
-<table >
-    <thead>
-        <tr>
-        <th style="text-align:left">Particulars</th>
-        <th></th>
-        </tr>
-        
-    </thead>
-    <tbody>
-        <tr>
-        <td style="text-align:left"><input type="text"></td>
-        <td></td>
-           
-        </tr>
-
-    </tbody>
-</table>
-
-    </div>
-    
-    <div style=" width:47%; height: 100%" class="lists">
-        <div style="width: 50%; padding:8px ; height: auto; border:1px solid  rgb(177, 203, 225);background-color: rgb(222, 242, 255);">
-           <h5 style="background-color:rgb(27, 117, 173) ; color:white; text-align: center; padding: 8px;">List of Ledgers</h5>
-           <div style="margin-bottom:10px ;">
-           <button  class="btns_prnt">Create</button>
-           <a href="#"><button  class="btns_prnt">Show more</button></a>
-
+<form action="salesrecipts" method="POST" class="post-form">
+  {% csrf_token %}
+  <div class="page-content">
+    <div class="card radius-15">
+      <div class="card-body">
+        <div class="card-title">
+          <center>
+            <h3 class="mb-0" id="slno">CONTRA VOUCHER No.</h3>
+          </center>
         </div>
-        </div>
+      </div>
     </div>
-    <div style=" width:6%; background-color: rgb(142, 211, 250);height: 100%">
-    <table>
-        <tr><td><a href="#">Contra</a></td></tr>
-        <tr><td><a href='#'>Payment</a</td></tr>
-        <tr><td><a href='#'>Receipt</a></td></tr>
-        <tr><td><a href='#'>Journal</a></td></tr>
-        <tr><td><a href="#">Sales</a></td></tr>
-        <tr><td><a href="#">Purchase</a></td></tr>
-    </table>
-    </div>
-</div>
-</div>
-</body>
-</html>
+    <div class="card radius-15">
+      <div class="card-body">
+        <div id="sales">
+          <div class="invoice overflow-auto">
+            <div class="row">
+              <div class="col">
+                <center>
+                  <h2>Fin sYs</h2>
+                </center>
+              </div>
+            </div>
+            <div class="row mt-4">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover" id="tab_logic">
+                    <thead>
+                      <tr>
+                        
+                        <th class="text-center">Particulars</th>
+                        <th class="text-center">Credit</th>
+                        <th class="text-center">Debit</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id='addr0'>
+                        
+                        <td>
+                          <select name='salepro' id="product" class="form-control">
+                            <option value=" " selected>Select Ledger</option>
+                        
+                            <option>Cash in hand</option>
+                            <option>Bank account</option>
+                          </select>
+                        </td>
+                        
+                        <td><input type="number" name='saleprice' id="unit1" placeholder='0.00' class="form-control price" step="0.00" min="0" /></td>
+                        <td><input type="number" name='saaletotal' id="total1" placeholder='0.00' class="form-control total"  /></td>
+                        <div class="row clearfix" style="margin-top:20px">
+                            <div class="col-md-7"></div>
+                            <div class="col-md-5">
+                              <table class="table table-bordered table-hover" id="tab_logic_total">
+                                <tbody>
+                                  <tr>
+                                    <th class="text-center">Sub Total</th>
+                                    <td class="text-center"><input type="number" step='any' name='salesubtotal' placeholder='0.00' class="form-control" id="sub_total" readonly /></td>
+                                  </tr>
+                                  
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="row mt-4">
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2">
+                              <button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
+                                Save
+                              </button>
+                            </div>
+                          </div>
+                          <div class="row mt-3">
+                            <div class="col-md-10">
+                              <div class="notices">
+                                <div class="text-muted">NOTICE:</div>
+                                <div class="notice text-muted">
+                                  Fin sYs Terms and Conditions Apply
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+{% endblock %}
