@@ -11,8 +11,8 @@ def receipt(request):
     return render(request,'receipt.html')
 def journal(request):
     return render(request,'journal.html')
-# def sales(request):
-#     return render(request,'sales.html')
+def sales(request):
+    return render(request,'sales.html')
 # def purchase(request):
 #     return render(request,'purchase.html')
 def daybook(request):
