@@ -29,12 +29,20 @@
             </div>
             <div class="row mt-4">
                 <div class="table-responsive">
-                  Account:<select class="form-control" name="account2">
-                    {% for l in ledger %}
-                    <option value=" " selected>Select account</option>
-                    <option value="{{ ledger.id }}">{{ ledger.name}}</option>
-                    {% endfor %}
-                </select>
+                  Date:<input type="date" name="date"><br><br><br>
+                  Account:<input type="text" id="account" name="account" list="banks" placeholder="SELECT ACCOUNT" required>
+                  <datalist id="banks">
+                      <option value="Cash">Cash</option>
+                      <option value="Hdfc bank">Hdfc bank</option>
+                      <option value="Federal bank">Federal bank</option>
+                      <option value="Sbi bank">Sbi bank</option>
+                      <option value="Axis bank">Axis bank</option>
+                      <option value="Bank of baroda">Bank of baroda</option>
+                      <option value="Union bank">Union bank</option>
+                      <option value="Uco bank">Uco bank</option>
+                  </datalist>
+                    <br><br>
+
                   <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                       <tr>
@@ -75,7 +83,7 @@
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="text-muted">NOTICE:</div>
+                                <div class="text-muted"></div>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>

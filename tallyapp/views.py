@@ -13,7 +13,7 @@ def journal(request):
     return render(request,'journal.html')
 def sales(request):
     return render(request,'sales.html')
- def purchase(request):
+def purchase(request):
     return render(request,'purchase.html')
 def daybook(request):
     return render(request,'daybook.html')
