@@ -30,17 +30,11 @@
             <div class="row mt-4">
                 <div class="table-responsive">
                   Date:<input type="date" name="date"><br><br><br>
-                  Account:<input type="text" id="account" name="account" list="banks" placeholder="SELECT ACCOUNT" required>
-                  <datalist id="banks">
-                      <option value="Cash">Cash</option>
-                      <option value="Hdfc bank">Hdfc bank</option>
-                      <option value="Federal bank">Federal bank</option>
-                      <option value="Sbi bank">Sbi bank</option>
-                      <option value="Axis bank">Axis bank</option>
-                      <option value="Bank of baroda">Bank of baroda</option>
-                      <option value="Union bank">Union bank</option>
-                      <option value="Uco bank">Uco bank</option>
-                  </datalist>
+                  Account:<select class="form-control" name="account">
+                    {% for i in accledger %}
+                    <option value="{{ i.id }}">{{ i.name}}</option>
+                    {% endfor %}
+                </select>
                     <br><br>
 
                   <table class="table table-bordered table-hover" id="tab_logic">
@@ -57,10 +51,10 @@
                       <tr>
                         
                         <td>
-                          <select name='Particulars' class="form-control">
-                            {% for l in ledger %}
-                            <option value=" " selected>Select Ledger</option>
-                            <option value="{{ ledger.id }}">{{ ledger.name}}</option>
+                          <select name='particulars' class="form-control">
+                            {% for l in ledgers %}
+                            <option value=" " selected>Select Particulars</option>
+                            <option value="{{ l.id }}">{{ l.name}}</option>
                             {% endfor %}
     
                           </select>

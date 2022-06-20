@@ -29,10 +29,11 @@
             </div>
             <div class="row mt-4">
                 <div class="table-responsive">
+                  Date:<input type="date" name="date"><br><br><br>
                   Account:<select class="form-control" name="account">
-                    {% for l in ledger %}
+                    {% for l in accledger %}
                     <option value=" " selected>Select account</option>
-                    <option value="{{ ledger.id }}">{{ ledger.name}}</option>
+                    <option value="{{ l.id }}">{{ l.name}}</option>
                     {% endfor %}
                     </select>
                     <table class="table table-bordered table-hover" id="tab_logic">
@@ -49,10 +50,10 @@
                         <tr>
                           
                           <td>
-                            <select name='Particulars' class="form-control">
-                              {% for l in ledger %}
-                              <option value=" " selected>Select Ledger</option>
-                              <option value="{{ ledger.id }}">{{ ledger.name}}</option>
+                            <select name='particulars' class="form-control">
+                              {% for l in ledgers %}
+                              <option value=" " selected>Select Particulars</option>
+                              <option value="{{ l.id }}">{{ l.name}}</option>
                               {% endfor %}
       
                             </select>
