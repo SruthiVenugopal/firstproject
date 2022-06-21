@@ -5,17 +5,23 @@ from .models import groups,ledger,contra
 def index(request):
     return render(request,'index.html')
 def page1(request):
-    ledgers=ledger.objects.all()
-    context1={'ledgers':ledgers}
-    accledger=legder.objects.filter(group='bank accounts')
-    context2={'accledger':accledger}
+    group=request.GET.get('group')
+    ledger = ledger.objects.all()
+    if group is not None:
+        accledger = ledger.objects.filter(ledger_group=group)
+    ledger = groups.objects.all()
+    
+    context = {
+        'accledger':accledger,
+        'ledger':ledger,
+        }
     if request.method=='POST':
         date=request.POST['date']
         no=request.POST['no']
         a=request.POST['account']
         account1=ledger.objects.get(id=a)
         b=request.POST['particulars']
-        particular1=legder.objects.get(id=b)
+        particular1=ledger.objects.get(id=b)
         amount = request.POST['amount']
         con=contra(date=date,
                     no=no,
