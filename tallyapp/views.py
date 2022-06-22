@@ -1,27 +1,17 @@
 from django.shortcuts import render,redirect
-from .models import groups,ledger,contra
+from .models import GroupModel,LedgerModel,contra
 
 # Create your views here.
 def index(request):
     return render(request,'index.html')
 def page1(request):
-    group=request.GET.get('group')
-    ledger = ledger.objects.all()
-    if group is not None:
-        accledger = ledger.objects.filter(ledger_group=group)
-    ledger = groups.objects.all()
-    
-    context = {
-        'accledger':accledger,
-        'ledger':ledger,
-        }
     if request.method=='POST':
         date=request.POST['date']
         no=request.POST['no']
         a=request.POST['account']
-        account1=ledger.objects.get(id=a)
+        account1=GroupModel.objects.get(id=a)
         b=request.POST['particulars']
-        particular1=ledger.objects.get(id=b)
+        particular1=LedgerModel.objects.get(id=b)
         amount = request.POST['amount']
         con=contra(date=date,
                     no=no,
@@ -31,7 +21,7 @@ def page1(request):
         con.save()
         print("hii")
         return redirect('/')
-    return render(request,'page1.html',context1,context2)
+    return render(request,'page1.html')
 def payment(request):
     return render(request,'payment.html')
 def receipt(request):
