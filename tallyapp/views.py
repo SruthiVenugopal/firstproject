@@ -5,6 +5,9 @@ from .models import GroupModel,LedgerModel,contra
 def index(request):
     return render(request,'index.html')
 def page1(request):
+    accounts=GroupModel.objects.all()
+    particular=LedgerModel.objects.all()
+    context={'accounts':accounts,'particular':particular}
     if request.method=='POST':
         date=request.POST['date']
         no=request.POST['no']
@@ -21,7 +24,7 @@ def page1(request):
         con.save()
         print("hii")
         return redirect('/')
-    return render(request,'page1.html')
+    return render(request,'page1.html',context)
 def payment(request):
     return render(request,'payment.html')
 def receipt(request):

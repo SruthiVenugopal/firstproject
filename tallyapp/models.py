@@ -35,12 +35,14 @@ class LedgerModel(models.Model):
 
 class contra(models.Model):
     date=models.DateField(auto_now=True)
-    no=models.PositiveIntegerField()
+    no=models.PositiveIntegerField(default=0,null=False)
     account=models.ForeignKey(GroupModel,on_delete=models.CASCADE,blank=False)
     particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False)
     amount=models.IntegerField()
     def __str__(self):
-     return self. account
+        if self.pk:
+            self.no += 1
+        return self. account
 
 
 
