@@ -40,11 +40,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td></tr>
+                      
+                        {% for i in con %}
+                        <tr>
+                        <td>{{i.particulars}}</td>
+                        <td>Contra Voucher</td>
+                        <td>{{i.id}}</td>
+                        <td>{{i.amount}}</td>
+                      </tr>
+                       {% endfor %}
                         </tbody></table><div class="row clearfix" style="margin-top:20px">
                             <div class="col-md-7"></div>
                             
@@ -60,7 +64,7 @@
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="text-muted">NOTICE:</div>
+                                <div class="text-muted"></div>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>

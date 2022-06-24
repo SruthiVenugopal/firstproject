@@ -16,10 +16,11 @@ class GroupModel(models.Model):
         return self.name
 
 class LedgerModel(models.Model):
-  
+    #cid=models.ForeignKey(CompanyModel,on_delete=models.CASCADE,null=True,blank=True)
     ledger_name = models.CharField(max_length=225)
     ledger_alias = models.CharField(max_length=225)
-
+    group = models.ForeignKey(
+        GroupModel, on_delete=models.CASCADE, null=True, blank=True)
 
     ledger_opening_bal = models.CharField(max_length=225)
     ledger_type = models.CharField(max_length=225)
@@ -36,8 +37,8 @@ class LedgerModel(models.Model):
 class contra(models.Model):
     date=models.DateField(auto_now=True)
     no=models.PositiveIntegerField(default=0,null=False)
-    account=models.ForeignKey(GroupModel,on_delete=models.CASCADE,blank=False)
-    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False)
+    account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
+    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
     amount=models.IntegerField()
     def __str__(self):
         if self.pk:

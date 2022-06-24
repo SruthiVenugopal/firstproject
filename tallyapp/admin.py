@@ -1,10 +1,10 @@
 from django.contrib import admin
-from tallyapp.models import groups,ledger,contra
+from tallyapp.models import GroupModel,LedgerModel,contra
 
 # Register your models here.
 
-admin.site.register(groups)
+admin.site.register(GroupModel)
 
-admin.site.register(ledger)
+admin.site.register(LedgerModel)
 
 admin.site.register(contra)

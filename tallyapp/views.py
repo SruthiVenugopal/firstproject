@@ -5,14 +5,14 @@ from .models import GroupModel,LedgerModel,contra
 def index(request):
     return render(request,'index.html')
 def page1(request):
-    accounts=GroupModel.objects.all()
-    particular=LedgerModel.objects.all()
-    context={'accounts':accounts,'particular':particular}
+    #a=GroupModel.objects.filter(name='bankaccounts')
+    conled=LedgerModel.objects.all()
+    context={'conled':conled}
     if request.method=='POST':
         date=request.POST['date']
         no=request.POST['no']
         a=request.POST['account']
-        account1=GroupModel.objects.get(id=a)
+        account1=LedgerModel.objects.get(id=a)
         b=request.POST['particulars']
         particular1=LedgerModel.objects.get(id=b)
         amount = request.POST['amount']
@@ -36,4 +36,6 @@ def sales(request):
 def purchase(request):
     return render(request,'purchase.html')
 def daybook(request):
-    return render(request,'daybook.html')
+    con=contra.objects.all()
+    context={'con':con}
+    return render(request,'daybook.html',context)

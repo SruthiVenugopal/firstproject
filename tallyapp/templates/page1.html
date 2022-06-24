@@ -31,8 +31,9 @@
                 <div class="table-responsive">
                   Date:<input type="date" name="date"><br><br><br>
                   Account:<select class="form-control" name="account">
-                    {% for i in accounts %}
-                    <option value="{{ i.id }}">{{ i.name}}</option>
+                    <option value=" " selected>Select Account</option>
+                    {% for i in conled %}
+                    <option value="{{ i.id }}">{{ i.ledger_name}}</option>
                     {% endfor %}
                 </select>
                     <br><br>
@@ -52,8 +53,8 @@
                         
                         <td>
                           <select name='particulars' class="form-control">
-                            {% for l in particular %}
                             <option value=" " selected>Select Particulars</option>
+                            {% for l in conled %}
                             <option value="{{ l.id }}">{{ l.ledger_name}}</option>
                             {% endfor %}
     
