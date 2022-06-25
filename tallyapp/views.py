@@ -23,7 +23,7 @@ def page1(request):
                     amount=amount)
         con.save()
         print("hii")
-        return redirect('/')
+        return redirect('daybook')
     return render(request,'page1.html',context)
 def payment(request):
     return render(request,'payment.html')
