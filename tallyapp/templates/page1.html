@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="card-title">
           <center>
-            <h3 class="mb-0" >CONTRA VOUCHER No.<input type="number" name="no"></h3>
+            <h3 class="mb-0" >TALLY PRIME</h3>
           </center>
         </div>
       </div>
@@ -22,15 +22,16 @@
           <div class="invoice overflow-auto">
             <div class="row">
               <div class="col">
-                <center>
-                  <h2>Tally Prime</h2>
-                </center>
+                
+                  <h2 style="text-align: left;">CONTRA VOUCHER No.<input type="text" name='no'></h2>
+                  <h2 style="text-align: right;">Date:{% now "d-M-Y" %}</h2>
+                  <input type="date" name="date" hidden>
               </div>
             </div>
             <div class="row mt-4">
                 <div class="table-responsive">
-                  Date:<input type="date" name="date"><br><br><br>
-                  Account:<select class="form-control" name="account">
+                  
+                  ACCOUNT :<select class="form-control" name="account">
                     <option value=" " selected>Select Account</option>
                     {% for i in conled %}
                     <option value="{{ i.id }}">{{ i.ledger_name}}</option>
@@ -78,7 +79,7 @@
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="text-muted"></div>
+                                <div class="form-control">NARRATION: <input type="text" name="narration"></div><br>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>

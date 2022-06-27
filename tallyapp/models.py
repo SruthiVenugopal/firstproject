@@ -1,5 +1,6 @@
 from pyexpat import model
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
@@ -35,15 +36,29 @@ class LedgerModel(models.Model):
         return self.ledger_name
 
 class contra(models.Model):
+    # transchoice=[
+    #     ('cheque/dd', 'Cheque/dd'),
+    #     ('atm', 'Atm'),
+    #     ('card', 'Card'),
+    #     ('cash', 'Cash'),
+    #     ('ecs', 'Ecs'),
+    #     ('e-fund-transfer', 'E-fund-transfer'),
+    #     ('electronic-cheque', 'Electronic-cheque'),
+    #     ('electronic-dd/po', 'Electronic-dd/po'),
+    #     ('others', 'Others')
+    #     ]
     date=models.DateField(auto_now=True)
     no=models.PositiveIntegerField(default=0,null=False)
+    #transactiontype=models.CharField(max_length=30,choices=transchoice,default='cheque/dd')
     account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
     particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
     amount=models.IntegerField()
+    #narration=models.CharField(max_length=255)
     def __str__(self):
         if self.pk:
             self.no += 1
         return self. account
+        
 
 
 
