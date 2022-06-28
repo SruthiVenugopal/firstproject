@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action=" " method="POST" class="post-form">
+<form action="{% url 'index' %}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -23,8 +23,8 @@
             <div class="row">
               <div class="col">
                 <center>
-                  <h2 >Bank Allocation For: {{con.account}}</h2><br>
-                  <h3>For: {{con.amount}}</h3>
+                  <h2 >Bank Allocation For: {{account1}}</h2><br>
+                  <h3>For: {{amount}}</h3>
                 </center>
     
               </div>
@@ -37,13 +37,15 @@
                         
                         <th class="text-center">Ledger</th>
                         <th class="text-center">Transaction type</th>
+                        <th class="text-center">Inst No.</th>
+                        <th class="text-center">Inst.Date</th>
                         <th class="text-center">Amount</th>
                       </tr>
                     </thead>
                     <tbody>
                       
                             <tr>
-                                <td>{{con.particulars}}</td>
+                                <td>{{particular1}}</td>
                                 <td>
                                   <select name='transactiontype' class="form-control">
                                     <option value="cheque/dd" selected>Cheque/dd</option>
@@ -54,7 +56,9 @@
                                   
                                   </select>
                                 </td>
-                                <td>{{con.amount}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{amount}}</td>
                               </tr>
                         
                         </tbody></table><div class="row clearfix" style="margin-top:20px">
@@ -72,7 +76,7 @@
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="form-control">NARRATION: </div><br>
+                                <div class="form-control">NARRATION: {{narration}}</div><br>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>

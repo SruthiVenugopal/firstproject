@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action=" " method="POST" class="post-form">
+<form action="{% url 'page1' %}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -23,7 +23,7 @@
             <div class="row">
               <div class="col">
                 
-                  <h2 style="text-align: left;">CONTRA VOUCHER No.<input type="text" name='no'></h2>
+                  <h2 style="text-align: left;">CONTRA No. <input type="text" name='no'></h2>
                   <h2 style="text-align: right;">Date:{% now "d-M-Y" %}</h2>
                   <input type="date" name="date" hidden>
               </div>
@@ -32,7 +32,7 @@
                 <div class="table-responsive">
                   
                   ACCOUNT :<select class="form-control" name="account">
-                    <option value=" " selected>Select Account</option>
+                    <option value=" " selected>List of ledger accounts</option>
                     {% for i in conled %}
                     <option value="{{ i.id }}">{{ i.ledger_name}}</option>
                     {% endfor %}
@@ -54,7 +54,7 @@
                         
                         <td>
                           <select name='particulars' class="form-control">
-                            <option value=" " selected>Select Particulars</option>
+                            <option value=" " selected>List of ledger accounts</option>
                             {% for l in conled %}
                             <option value="{{ l.id }}">{{ l.ledger_name}}</option>
                             {% endfor %}

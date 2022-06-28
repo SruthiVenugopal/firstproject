@@ -221,7 +221,7 @@
                             <a href="javascript:;" class="has-arrow">
                                 <div class="parent-icon"><i class="bx bx-home-alt"></i>
                                 </div>
-                                <div class="menu-title">Vouchers</div>
+                                <div class="menu-title">Create</div>
                             </a>
                             <ul>
                                 <li><a href="{% url 'page1' %}"><i class="bx bx-right-arrow-alt"></i>Contra</a>
@@ -241,29 +241,12 @@
                             
                             </ul>
                         </li>
-                        <li>
-                            <a href="javascript:;" class="has-arrow">
-                                <div class="parent-icon"><i class="bx bx-home-alt"></i>
-                                </div>
-                                <div class="menu-title">Banking</div>
-                            </a>
-                            <ul>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Online
-                    Banking</a>
-                                </li>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Offline
-                    Banking</a>
-                                </li>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Bank
-                    Reconcilation</a>
-                                </li>
-                            </ul>
-                        </li>
+                        
                         <li>
                             <a href="javascript:;" class="has-arrow">
                                 <div class="parent-icon"><i class="bx bx-file"></i>
                                 </div>
-                                <div class="menu-title">Sales</div>
+                                <div class="menu-title">Alter</div>
                             </a>
                             <ul>
                                 <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Sales
@@ -283,7 +266,7 @@
 
                                 <div class="parent-icon"><i class='bx bx-briefcase-alt'></i>
                                 </div>
-                                <div class="menu-title">Expenses</div>
+                                <div class="menu-title">Chart of Accounts</div>
                             </a>
                             <ul>
                                 <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Expenses</a>
@@ -296,33 +279,43 @@
                             <a href="javascript:;" class="has-arrow">
                                 <div class="parent-icon"><i class='bx bx-wallet'></i>
                                 </div>
-                                <div class="menu-title">Payroll</div>
+                                <div class="menu-title">Vouchers</div>
                             </a>
                             <ul>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Employee</a>
+                                <li><a href="{% url 'page1' %}"><i class="bx bx-right-arrow-alt"></i>Contra</a>
                                 </li>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Payslip</a>
+                                <li><a href="{% url 'payment' %}"><i class="bx bx-right-arrow-alt"></i>Payment</a>
                                 </li>
+                                <li><a href="{% url 'receipt' %}"><i class="bx bx-right-arrow-alt"></i>Receipt</a>
+                                </li>
+                                <li><a href="{% url 'journal' %}"><i class="bx bx-right-arrow-alt"></i>Journal</a>
+                                </li>
+                                <li><a href="{% url 'sales' %}"><i class="bx bx-right-arrow-alt"></i>Sales</a>
+                                </li>
+                                <li><a href="{% url 'purchase' %}"><i class="bx bx-right-arrow-alt"></i>Purchase</a>
+                                </li>  
                             </ul>
                         </li>
                         <li>
                             <a href="javascript:;" class="has-arrow">
                                 <div class="parent-icon"><i class="bx bx-comment-edit"></i>
                                 </div>
-                                <div class="menu-title">Report</div>
+                                <div class="menu-title">Day Book</div>
                             </a>
                             <ul>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Profit and
-                    loss</a>
+                                <li><a href="{% url 'daybook' %}"><i class="bx bx-right-arrow-alt"></i>All</a>
                                 </li>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Balance
-                    sheet</a>
+                                <li><a href="{% url 'daybookcon' %}"><i class="bx bx-right-arrow-alt"></i>Contra</a>
                                 </li>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Accounts
-                    receivables</a>
+                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Payment</a>
                                 </li>
-                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Accounts
-                    payables</a>
+                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Receipt</a>
+                                </li>
+                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Jourrnal</a>
+                                </li>
+                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Sales</a>
+                                </li>
+                                <li><a href="#"><i class="bx bx-right-arrow-alt"></i>Purchase</a>
                                 </li>
                             </ul>
                         </li>
@@ -330,7 +323,7 @@
                             <a href="javascript:;" class="has-arrow">
                                 <div class="parent-icon"><i class='bx bx-wallet'></i>
                                 </div>
-                                <div class="menu-title">Taxes</div>
+                                <div class="menu-title">Banking</div>
                             </a>
                             <ul>
                                 <li><a href="#"><i class="bx bx-right-arrow-alt"></i>GST</a>
