@@ -36,6 +36,9 @@ class LedgerModel(models.Model):
         return self.ledger_name
 
 class contra(models.Model):
+    
+    instno=models.PositiveIntegerField(default=5656,null=False)
+    instdate=models.CharField(default='24Mar2022',null=False)
     date=models.DateField(auto_now=True)
     no=models.PositiveIntegerField(default=0,null=False)
     account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
@@ -45,6 +48,53 @@ class contra(models.Model):
         if self.pk:
             self.no += 1
         return self. account
+
+class payment(models.Model):
+
+    instno=models.PositiveIntegerField(default=5656,null=False)
+    instdate=models.CharField(default='24Mar2022',null=False)
+    date=models.DateField(auto_now=True)
+    no=models.PositiveIntegerField(default=0,null=False)
+    account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
+    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
+    amount=models.IntegerField()
+    def __str__(self):
+        if self.pk:
+            self.no += 1
+        return self. account
+
+class receipt(models.Model):
+
+    instno=models.PositiveIntegerField(default=5656,null=False)
+    instdate=models.CharField(default='24Mar2022',null=False)
+    date=models.DateField(auto_now=True)
+    no=models.PositiveIntegerField(default=0,null=False)
+    account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
+    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
+    amount=models.IntegerField()
+    def __str__(self):
+        if self.pk:
+            self.no += 1
+        return self. account
+
+class journal(models.Model):
+
+    instno=models.PositiveIntegerField(default=5656,null=False)
+    instdate=models.CharField(default='24Mar2022',null=False)
+    date=models.DateField(auto_now=True)
+    no=models.PositiveIntegerField(default=0,null=False)
+    account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
+    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
+    amount=models.IntegerField()
+    def __str__(self):
+        if self.pk:
+            self.no += 1
+        return self. account
+
+
+
+
+
         
 
 
