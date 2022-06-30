@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="{% url 'index' %}" method="POST" class="post-form">
+<form action="{% url 'editcon' %}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -52,12 +52,12 @@
                                     <option value="atm">ATM</option>
                                     <option value="card">Card</option>
                                     <option value="cash">Cash</option>
-                                    <option value="ecs">ECS</option>
+                                    <option value="others">Others</option>
                                   
                                   </select>
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td>{{instno}}</td>
+                                <td>{{instdate}}</td>
                                 <td>{{amount}}</td>
                               </tr>
                         

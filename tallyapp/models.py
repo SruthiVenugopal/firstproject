@@ -36,9 +36,17 @@ class LedgerModel(models.Model):
         return self.ledger_name
 
 class contra(models.Model):
-    
-    instno=models.PositiveIntegerField(default=5656,null=False)
-    instdate=models.CharField(default='24Mar2022',null=False)
+    # transchoice=[
+    #     ('cheque/dd', 'Cheque/dd'),
+    #     ('atm', 'Atm'),
+    #     ('card', 'Card'),
+    #     ('cash', 'Cash'),
+    #     ('e-fund-transfer', 'E-fund-transfer'),
+    #     ('others', 'Others')
+    #     ]
+    # transactiontype=models.CharField(max_length=30,choices=transchoice,default='cheque/dd')
+    # instno=models.PositiveIntegerField(default=5656,null=False)
+    # instdate=models.CharField(max_length=225,default='24Mar2022',null=False)
     date=models.DateField(auto_now=True)
     no=models.PositiveIntegerField(default=0,null=False)
     account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
@@ -49,47 +57,71 @@ class contra(models.Model):
             self.no += 1
         return self. account
 
-class payment(models.Model):
+# class payment(models.Model):
+#     transchoice=[
+#         ('cheque/dd', 'Cheque/dd'),
+#         ('atm', 'Atm'),
+#         ('card', 'Card'),
+#         ('cash', 'Cash'),
+#         ('e-fund-transfer', 'E-fund-transfer'),
+#         ('others', 'Others')
+#         ]
+#     transactiontype=models.CharField(max_length=30,choices=transchoice,default='cheque/dd')
+#     instno=models.PositiveIntegerField(default=5656,null=False)
+#     instdate=models.CharField(max_length=255,default='24Mar2022',null=False)
+#     date=models.DateField(auto_now=True)
+#     no=models.PositiveIntegerField(default=0,null=False)
+#     account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='payacc')
+#     particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='payled')
+#     amount=models.IntegerField()
+#     def __str__(self):
+#         if self.pk:
+#             self.no += 1
+#         return self. account
 
-    instno=models.PositiveIntegerField(default=5656,null=False)
-    instdate=models.CharField(default='24Mar2022',null=False)
-    date=models.DateField(auto_now=True)
-    no=models.PositiveIntegerField(default=0,null=False)
-    account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
-    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
-    amount=models.IntegerField()
-    def __str__(self):
-        if self.pk:
-            self.no += 1
-        return self. account
+# class receipt(models.Model):
+#     transchoice=[
+#         ('cheque/dd', 'Cheque/dd'),
+#         ('atm', 'Atm'),
+#         ('card', 'Card'),
+#         ('cash', 'Cash'),
+#         ('e-fund-transfer', 'E-fund-transfer'),
+#         ('others', 'Others')
+#         ]
+#     transactiontype=models.CharField(max_length=30,choices=transchoice,default='cheque/dd')
+#     instno=models.PositiveIntegerField(default=5656,null=False)
+#     instdate=models.CharField(default='24Mar2022',null=False)
+#     date=models.DateField(auto_now=True)
+#     no=models.PositiveIntegerField(default=0,null=False)
+#     account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
+#     particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
+#     amount=models.IntegerField()
+#     def __str__(self):
+#         if self.pk:
+#             self.no += 1
+#         return self. account
 
-class receipt(models.Model):
-
-    instno=models.PositiveIntegerField(default=5656,null=False)
-    instdate=models.CharField(default='24Mar2022',null=False)
-    date=models.DateField(auto_now=True)
-    no=models.PositiveIntegerField(default=0,null=False)
-    account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
-    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
-    amount=models.IntegerField()
-    def __str__(self):
-        if self.pk:
-            self.no += 1
-        return self. account
-
-class journal(models.Model):
-
-    instno=models.PositiveIntegerField(default=5656,null=False)
-    instdate=models.CharField(default='24Mar2022',null=False)
-    date=models.DateField(auto_now=True)
-    no=models.PositiveIntegerField(default=0,null=False)
-    account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
-    particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
-    amount=models.IntegerField()
-    def __str__(self):
-        if self.pk:
-            self.no += 1
-        return self. account
+# class journal(models.Model):
+#     transchoice=[
+#         ('cheque/dd', 'Cheque/dd'),
+#         ('atm', 'Atm'),
+#         ('card', 'Card'),
+#         ('cash', 'Cash'),
+#         ('e-fund-transfer', 'E-fund-transfer'),
+#         ('others', 'Others')
+#         ]
+#     transactiontype=models.CharField(max_length=30,choices=transchoice,default='cheque/dd')
+#     instno=models.PositiveIntegerField(default=5656,null=False)
+#     instdate=models.CharField(default='24Mar2022',null=False)
+#     date=models.DateField(auto_now=True)
+#     no=models.PositiveIntegerField(default=0,null=False)
+#     account=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='accountled')
+#     particulars=models.ForeignKey(LedgerModel,on_delete=models.CASCADE,blank=False,related_name='partled')
+#     amount=models.IntegerField()
+#     def __str__(self):
+#         if self.pk:
+#             self.no += 1
+#         return self. account
 
 
 

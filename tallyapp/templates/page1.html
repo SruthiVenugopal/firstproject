@@ -23,9 +23,9 @@
             <div class="row">
               <div class="col">
                 
-                  <h2 style="text-align: left;">CONTRA No. <input type="text" name='no'></h2>
+                  <h2 style="text-align: left;">CONTRA </h2>
                   <h2 style="text-align: right;">Date:{% now "d-M-Y" %}</h2>
-                  <input type="date" name="date" hidden>
+                  
               </div>
             </div>
             <div class="row mt-4">
@@ -34,7 +34,7 @@
                   ACCOUNT :<select class="form-control" name="account">
                     <option value=" " selected>List of ledger accounts</option>
                     {% for i in conled %}
-                    <option value="{{ i.id }}">{{ i.ledger_name}}</option>
+                    <option value="{{i.id}}">{{ i.ledger_name}}</option>
                     {% endfor %}
                 </select>
                     <br><br>
@@ -56,7 +56,7 @@
                           <select name='particulars' class="form-control">
                             <option value=" " selected>List of ledger accounts</option>
                             {% for l in conled %}
-                            <option value="{{ l.id }}">{{ l.ledger_name}}</option>
+                            <option value="{{i.id}}">{{ l.ledger_name}}</option>
                             {% endfor %}
     
                           </select>
