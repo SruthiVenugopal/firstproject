@@ -9,25 +9,23 @@ def page1(request):
     a=GroupModel.objects.get(name="bankaccounts")
     conled=LedgerModel.objects.filter(group=a.id)
     context1={'conled':conled}
-    if request.method=='POST':
+    if request.method =='POST':
         #date=request.POST['date']
         #no=request.POST['no']
         #transactiontype=request.POST['transactiontype']
-        a=request.POST['account']
-        account1=LedgerModel.objects.filter(ledger_name=a).first()
-        b=request.POST['particulars']
-        particular1=LedgerModel.objects.filter(ledger_name=b).first()
+        a=request.POST.get('account')
+        b=contra.objects.get(account=a)
+        #e=LedgerModel.objects.get(id=b.id)
+        #account1=contra.objects.get
+        #c=request.POST.get('particulars')
+        #d=LedgerModel.objects.get(
+        # particular1=contra.objects.get(particulars=ledger_id)
         amount = request.POST['amount']
         narration=request.POST['narration']
-        try:
-            con=contra.objects.all().last()
-            no=con.no+1
-        except:
-            no=1
-        con=contra(date=date,
-                    no=no,
-                    account=account1,
-                    particulars=particular1,
+        con=contra(#date=date,
+                    #no=no,
+                    account=b,
+                    #particulars=d,
                     amount=amount)
                     
         con.save()
@@ -37,8 +35,10 @@ def page1(request):
     return render(request,'page1.html',context1)
 
 # def payment(request):
-#     payled=LedgerModel.objects.all()
-#     context1={'payled':payled}
+    #   a=GroupModel.objects.get(name="bankaccounts")
+    #   conled=LedgerModel.objects.filter(group=a.id)
+    #   a=GroupModel.objects.get(name="")
+    #   conled=LedgerModel.objects.filter(group=a.id)
 #     if request.method=='POST':
 #         #date=request.POST['date']
 #         #no=request.POST['no']
