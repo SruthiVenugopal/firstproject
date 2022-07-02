@@ -45,7 +45,7 @@
                       
                         {% for i in con %}
                         <tr>
-                        <td>{{i.particulars}}</td>
+                        <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Contra Voucher</td>
@@ -55,7 +55,7 @@
                        {% endfor %}
                        {% for i in pay %}
                         <tr>
-                        <td>{{i.particulars}}</td>
+                        <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Payment Voucher</td>
@@ -65,7 +65,7 @@
                        {% endfor %}
                        {% for i in rec %}
                         <tr>
-                        <td>{{i.particulars}}</td>
+                        <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Receipt Voucher</td>

@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="{% url 'journal' %}" method="POST" class="post-form">
+<form action="/editpay/{{con.pk}}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -22,44 +22,45 @@
           <div class="invoice overflow-auto">
             <div class="row">
               <div class="col">
-                <h2 style="text-align: left;">Journal </h2>
-                <h2 style="text-align: right;">Date:{% now "d-M-Y" %}</h2>
+                <center>
+                  <h2 >Bank Allocation For: {{con.account.ledger_name}}</h2><br>
+                  <h3>For: {{con.amount}}</h3>
+                </center>
+    
               </div>
             </div>
             <div class="row mt-4">
                 <div class="table-responsive">
-                  Account:<select class="form-control" name="account">
-                    
-                    <option value=" " selected>List of ledgers</option>
-                    {% for l in jouacc %}
-                    <option value="{{ l.id }}">{{ l.ledger_name}}</option>
-                    {% endfor %}
-                    </select>
                   <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                       <tr>
                         
-                        <th class="text-center">Particulars</th>
+                        <th class="text-center">Ledger</th>
+                        <th class="text-center">Transaction type</th>
+                        <th class="text-center">Inst No.</th>
+                        <th class="text-center">Inst.Date</th>
                         <th class="text-center">Amount</th>
-
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      
+                            <tr>
+                                <td>{{con.particulars.ledger_name}}</td>
+                                <td>
+                                  <select name='transactiontype' class="form-control">
+                                    <option value="cheque/dd" selected>Cheque/dd</option>
+                                    <option value="ATM">ATM</option>
+                                    <option value="Card">Card</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Others">Others</option>
+                                  
+                                  </select>
+                                </td>
+                                <td><input type="number" name="instno" value="{{con.instno}}" class="form-control"></td>
+                                <td><input type="text" name="instdate" value="{{con.instdate}}" class="form-control"></td>
+                                <td>{{con.amount}}</td>
+                              </tr>
                         
-                        <td>
-                          <select name='particulars' class="form-control">
-                           
-                            <option value=" " selected>List of ledgers</option>
-                            {% for l in jouled %}
-                            <option value="{{ l.id }}">{{ l.ledger_name}}</option>
-                            {% endfor %}
-    
-                          </select>
-                        </td>
-                        
-                        
-                        <td><input type="number" name='amount' id="amount" placeholder='0.00' class="form-control total" /></td></tr>
                         </tbody></table><div class="row clearfix" style="margin-top:20px">
                             <div class="col-md-7"></div>
                             
@@ -68,14 +69,14 @@
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
                               <button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
-                                Save
+                                OK
                               </button>
                             </div>
                           </div>
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="text-muted">NARRATION: <input type="text" name="narration"></div><br>
+                                <div class="form-control">NARRATION: {{con.narration}}</div><br>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>

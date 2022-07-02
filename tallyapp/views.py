@@ -1,165 +1,213 @@
 from django.shortcuts import render,redirect
-from .models import GroupModel,LedgerModel,contra
+from .models import Ledger,contra,payment,receipt,journal
 from datetime import datetime,date
 
 # Create your views here.
 def index(request):
     return render(request,'index.html')
 def page1(request):
-    a=GroupModel.objects.get(name="bankaccounts")
-    conled=LedgerModel.objects.filter(group=a.id)
+    conled=Ledger.objects.filter(group_under='bankaccounts')
     context1={'conled':conled}
     if request.method =='POST':
-        #date=request.POST['date']
-        #no=request.POST['no']
-        #transactiontype=request.POST['transactiontype']
-        a=request.POST.get('account')
-        b=contra.objects.get(account=a)
-        #e=LedgerModel.objects.get(id=b.id)
-        #account1=contra.objects.get
-        #c=request.POST.get('particulars')
-        #d=LedgerModel.objects.get(
-        # particular1=contra.objects.get(particulars=ledger_id)
+        a=request.POST['account']
+        b=Ledger.objects.get(id=a)
+        c=request.POST['particulars']
+        d=Ledger.objects.get(id=c)
         amount = request.POST['amount']
         narration=request.POST['narration']
+        try:
+            con=contra.objects.all().last()
+            no=con.no+1
+        except:
+            no=1
         con=contra(#date=date,
-                    #no=no,
+                    #narration=narration,
+                    no=no,
                     account=b,
-                    #particulars=d,
+                    particulars=d,
                     amount=amount)
                     
         con.save()
         print("hii")
-        context2={'account1':account1,'particular1':particular1,'amount':amount,'narration':narration}
-        return render(request,'editcon.html',context2)
+        con=con.id
+        return redirect('editcon',con)
     return render(request,'page1.html',context1)
 
-# def payment(request):
-    #   a=GroupModel.objects.get(name="bankaccounts")
-    #   conled=LedgerModel.objects.filter(group=a.id)
-    #   a=GroupModel.objects.get(name="")
-    #   conled=LedgerModel.objects.filter(group=a.id)
-#     if request.method=='POST':
-#         #date=request.POST['date']
-#         #no=request.POST['no']
-#         a=request.POST['account']
-#         account1=LedgerModel.objects.get(id=a)
-#         b=request.POST['particulars']
-#         particular1=LedgerModel.objects.get(id=b)
-#         amount = request.POST['amount']
-#         narration=request.POST['narration']
-#         try:
-#             pay=payment.objects.all().last()
-#             no=pay.no+1
-#         except:
-#             no=1
-#         pay=payment(date=date,
-#                     no=no,
-#                     account=account1,
-#                     particulars=particular1,
-#                     amount=amount)
+def editcon(request,pk):
+    con=contra.objects.get(id=pk)
+    if  request.method=='POST':
+        con = contra.objects.get(id=pk)
+        con.transactiontype = request.POST.get('transactiontype')
+        if con.transactiontype =="ATM":
+            con.instno=5657
+            con.instdate="25Mar2022"
+            con.save()
+        return redirect('index')
+    return render(request, 'editcon.html',{'con':con})
+
+def payment(request):
+    payacc=Ledger.objects.filter(group_under='bankaccounts')
+    payled=Ledger.objects.filter(group_under='primary')
+    context1={'payacc':payacc,'payled':payled}
+    if request.method =='POST':
+        a=request.POST['account']
+        b=Ledger.objects.get(id=a)
+        c=request.POST['particulars']
+        d=Ledger.objects.get(id=c)
+        amount = request.POST['amount']
+        narration=request.POST['narration']
+        try:
+            con=payment.objects.all().last()
+            no=con.no+1
+        except:
+            no=1
+        con=payment(#date=date,
+                    narration=narration,
+                    no=no,
+                    account=b,
+                    particulars=d,
+                    amount=amount)
                     
-#         pay.save()
-#         print("hii")
-#         context2={'account1':account1,'particular1':particular1,'amount':amount,'narration':narration}
-#         return render(request,'editpay.html',context2)
-#     return render(request,'payment.html',context1)
-# def receipt(request):
-#     recled=LedgerModel.objects.all()
-#     context1={'recled':recled}
-#     if request.method=='POST':
-#         date=request.POST['date']
-#         no=request.POST['no']
-#         a=request.POST['account']
-#         account1=LedgerModel.objects.get(id=a)
-#         b=request.POST['particulars']
-#         particular1=LedgerModel.objects.get(id=b)
-#         amount = request.POST['amount']
-#         narration=request.POST['narration']
-#         try:
-#             rec=receipt.objects.all().last()
-#             no=rec.no+1
-#         except:
-#             no=1
-#         rec=receipt(date=date,
-#                     no=no,
-#                     account=account1,
-#                     particulars=particular1,
-#                     amount=amount)
+        con.save()
+        print("hii")
+        con=con.id
+        return redirect('editcon',con)
+    return render(request,'payment.html',context1)
+
+def editpay(request,pk):
+    con=payment.objects.get(id=pk)
+    if  request.method=='POST':
+        con = payment.objects.get(id=pk)
+        con.transactiontype = request.POST.get('transactiontype')
+        if con.transactiontype =="ATM":
+            con.instno=5657
+            con.instdate="25Mar2022"
+            con.save()
+        return redirect('index')
+    return render(request, 'editpay.html',{'con':con})
+
+def receipt(request):
+    recacc=Ledger.objects.filter(group_under='bankaccounts')
+    recled=Ledger.objects.filter(group_under='primary')
+    context1={'recacc':recacc,'recled':recled}
+    if request.method =='POST':
+        a=request.POST['account']
+        b=Ledger.objects.get(id=a)
+        c=request.POST['particulars']
+        d=Ledger.objects.get(id=c)
+        amount = request.POST['amount']
+        narration=request.POST['narration']
+        try:
+            con=receipt.objects.all().last()
+            no=con.no+1
+        except:
+            no=1
+        con=receipt(#date=date,
+                    narration=narration,
+                    no=no,
+                    account=b,
+                    particulars=d,
+                    amount=amount)
                     
-#         rec.save()
-#         print("hii")
-#         context2={'account1':account1,'particular1':particular1,'amount':amount,'narration':narration}
-#         return render(request,'editrec.html',context2)
-#     return render(request,'receipt.html',context1)
-# def journal(request):
-#     jouled=LedgerModel.objects.all()
-#     context1={'jouled':jouled}
-#     if request.method=='POST':
-#         date=request.POST['date']
-#         no=request.POST['no']
-#         a=request.POST['account']
-#         account1=LedgerModel.objects.get(id=a)
-#         b=request.POST['particulars']
-#         particular1=LedgerModel.objects.get(id=b)
-#         amount = request.POST['amount']
-#         narration=request.POST['narration']
-#         try:
-#             jou=journal.objects.all().last()
-#             no=jou.no+1
-#         except:
-#             no=1
-#         jou=journal(date=date,
-#                     no=no,
-#                     account=account1,
-#                     particulars=particular1,
-#                     amount=amount)
+        con.save()
+        print("hii")
+        con=con.id
+        return redirect('editrec',con)
+    return render(request,'receipt.html',context1)
+
+def editrec(request,pk):
+    con=receipt.objects.get(id=pk)
+    if  request.method=='POST':
+        con = receipt.objects.get(id=pk)
+        con.transactiontype = request.POST.get('transactiontype')
+        if con.transactiontype =="ATM":
+            con.instno=5657
+            con.instdate="25Mar2022"
+            con.save()
+        return redirect('index')
+    return render(request, 'editrec.html',{'con':con})
+
+def journal(request):
+    jouacc=Ledger.objects.filter(group_under='bankaccounts')
+    jouled=Ledger.objects.filter(group_under='primary')
+    context1={'jouacc':jouacc,'jouled':jouled}
+    if request.method =='POST':
+        a=request.POST['account']
+        b=Ledger.objects.get(id=a)
+        c=request.POST['particulars']
+        d=Ledger.objects.get(id=c)
+        amount = request.POST['amount']
+        narration=request.POST['narration']
+        try:
+            con=journal.objects.all().last()
+            no=con.no+1
+        except:
+            no=1
+        con=journal(#date=date,
+                    narration=narration,
+                    no=no,
+                    account=b,
+                    particulars=d,
+                    amount=amount)
                     
-#         jou.save()
-#         print("hii")
-#         context2={'account1':account1,'particular1':particular1,'amount':amount,'narration':narration}
-#         return render(request,'editcon.html',context2)
-#     return render(request,'journal.html',context1)
-# def sales(request):
-#     return render(request,'sales.html')
-# def purchase(request):
-#     return render(request,'purchase.html')
-# def daybook(request):
-#     con=contra.objects.all()
-#     pay=payment.objects.all()
-#     rec=receipt.objects.all()
-#     jou=journal.objects.all()
-#     context={'con':con,'pay':pay,'rec':rec,'jou':jou}
-#     return render(request,'daybook.html',context)
-# def daybookcon(request):
-#     con=contra.objects.all()
-#     context={'con':con}
-#     return render(request,'daybookcon.html',context)
-# def daybookpay(request):
-#     pay=payment.objects.all()
-#     context={'pay':pay}
-#     return render(request,'daybookpay.html',context)
-# def daybookrec(request):
-#     rec=receipt.objects.all()
-#     context={'rec':rec}
-#     return render(request,'daybookrec.html',context)
-# def daybookjou(request):
-#     jou=journal.objects.all()
-#     context={'jou':jou}
-#     return render(request,'daybookjou.html',context)
-# def delcon(request,pk):
-#     a=contra.objects.get(id=pk)
-#     a.delete()
-#     return redirect('daybook')
-# def delpay(request,pk):
-#     a=payment.objects.get(id=pk)
-#     a.delete()
-#     return redirect('daybook')
-# def delrec(request,pk):
-#     a=receipt.objects.get(id=pk)
-#     a.delete()
-#     return redirect('daybook')
-# def deljou(request,pk):
-#     a=journal.objects.get(id=pk)
-#     a.delete()
-#     return redirect('daybook')
+        con.save()
+        print("hii")
+        con=con.id
+        return redirect('editjou',con)
+    return render(request,'journal.html',context1)
+
+def editjou(request,pk):
+    con=journal.objects.get(id=pk)
+    if  request.method=='POST':
+        con = journal.objects.get(id=pk)
+        con.transactiontype = request.POST.get('transactiontype')
+        if con.transactiontype =="ATM":
+            con.instno=5657
+            con.instdate="25Mar2022"
+            con.save()
+        return redirect('index')
+    return render(request, 'editjou.html',{'con':con})
+
+def sales(request):
+    return render(request,'sales.html')
+def purchase(request):
+    return render(request,'purchase.html')
+def daybook(request):
+    con=contra.objects.all()
+    pay=payment.objects.all()
+    rec=receipt.objects.all()
+    jou=journal.objects.all()
+    context={'con':con,'pay':pay,'rec':rec,'jou':jou}
+    return render(request,'daybook.html',context)
+def daybookcon(request):
+    con=contra.objects.all()
+    context={'con':con}
+    return render(request,'daybookcon.html',context)
+def daybookpay(request):
+    pay=payment.objects.all()
+    context={'pay':pay}
+    return render(request,'daybookpay.html',context)
+def daybookrec(request):
+    rec=receipt.objects.all()
+    context={'rec':rec}
+    return render(request,'daybookrec.html',context)
+def daybookjou(request):
+    jou=journal.objects.all()
+    context={'jou':jou}
+    return render(request,'daybookjou.html',context)
+def delcon(request,pk):
+    a=contra.objects.get(id=pk)
+    a.delete()
+    return redirect('daybook')
+def delpay(request,pk):
+    a=payment.objects.get(id=pk)
+    a.delete()
+    return redirect('daybook')
+def delrec(request,pk):
+    a=receipt.objects.get(id=pk)
+    a.delete()
+    return redirect('daybook')
+def deljou(request,pk):
+    a=journal.objects.get(id=pk)
+    a.delete()
+    return redirect('daybook')
