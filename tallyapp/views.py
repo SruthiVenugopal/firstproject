@@ -21,7 +21,7 @@ def page1(request):
         except:
             no=1
         con=contra(#date=date,
-                    #narration=narration,
+                    narration=narration,
                     no=no,
                     account=b,
                     particulars=d,
@@ -45,9 +45,9 @@ def editcon(request,pk):
         return redirect('index')
     return render(request, 'editcon.html',{'con':con})
 
-def payment(request):
+def pay(request):
     payacc=Ledger.objects.filter(group_under='bankaccounts')
-    payled=Ledger.objects.filter(group_under='primary')
+    payled=Ledger.objects.filter(group_under='paymentledger')
     context1={'payacc':payacc,'payled':payled}
     if request.method =='POST':
         a=request.POST['account']
@@ -71,7 +71,7 @@ def payment(request):
         con.save()
         print("hii")
         con=con.id
-        return redirect('editcon',con)
+        return redirect('editpay',con)
     return render(request,'payment.html',context1)
 
 def editpay(request,pk):
@@ -83,12 +83,12 @@ def editpay(request,pk):
             con.instno=5657
             con.instdate="25Mar2022"
             con.save()
-        return redirect('index')
+            return redirect('index')
     return render(request, 'editpay.html',{'con':con})
 
-def receipt(request):
+def rec(request):
     recacc=Ledger.objects.filter(group_under='bankaccounts')
-    recled=Ledger.objects.filter(group_under='primary')
+    recled=Ledger.objects.filter(group_under='receiptledger')
     context1={'recacc':recacc,'recled':recled}
     if request.method =='POST':
         a=request.POST['account']
@@ -124,12 +124,12 @@ def editrec(request,pk):
             con.instno=5657
             con.instdate="25Mar2022"
             con.save()
-        return redirect('index')
+            return redirect('index')
     return render(request, 'editrec.html',{'con':con})
 
-def journal(request):
+def jou(request):
     jouacc=Ledger.objects.filter(group_under='bankaccounts')
-    jouled=Ledger.objects.filter(group_under='primary')
+    jouled=Ledger.objects.filter(group_under='receiptledger')
     context1={'jouacc':jouacc,'jouled':jouled}
     if request.method =='POST':
         a=request.POST['account']
@@ -168,9 +168,9 @@ def editjou(request,pk):
         return redirect('index')
     return render(request, 'editjou.html',{'con':con})
 
-def sales(request):
+def sal(request):
     return render(request,'sales.html')
-def purchase(request):
+def pur(request):
     return render(request,'purchase.html')
 def daybook(request):
     con=contra.objects.all()

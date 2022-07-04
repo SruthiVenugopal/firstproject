@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="{% url 'journal' %}" method="POST" class="post-form">
+<form action="{% url 'jou' %}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -59,7 +59,7 @@
                         </td>
                         
                         
-                        <td><input type="number" name='amount' id="amount" placeholder='0.00' class="form-control total" /></td></tr>
+                        <td><input type="number" name='amount' id="amount" placeholder='0.00' class="form-control" /></td></tr>
                         </tbody></table><div class="row clearfix" style="margin-top:20px">
                             <div class="col-md-7"></div>
                             

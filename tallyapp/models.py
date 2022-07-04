@@ -84,6 +84,7 @@ class receipt(models.Model):
         return self. account
 
 class journal(models.Model):
+    narration=models.CharField(max_length=30)
     transchoice=[
         ('cheque/dd', 'Cheque/dd'),
         ('atm', 'Atm'),
