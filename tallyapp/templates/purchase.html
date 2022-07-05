@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="card-title">
           <center>
-            <h3 class="mb-0" >PURCHASE VOUCHER</h3>
+            <h3 class="mb-0" >TALLY PRIME</h3>
           </center>
         </div>
       </div>
@@ -22,13 +22,18 @@
           <div class="invoice overflow-auto">
             <div class="row">
               <div class="col">
-                <center>
-                  <h2>Tally Prime</h2>
-                </center>
+                <h2 style="text-align: left;">Purchase </h2>
+                <h2 style="text-align: right;">Date:{% now "d-M-Y" %}</h2>
               </div>
             </div>
             <div class="row mt-4">
                 <div class="table-responsive">
+                  Account:<select class="form-control" name="account">
+                    <option value=" " selected>List of ledgers</option>
+                    {% for l in puracc %}
+                    <option value="{{ l.id }}">{{ l.ledger_name}}</option>
+                    {% endfor %}
+                    </select>
                   <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                       <tr>
@@ -44,16 +49,12 @@
                       <tr>
                         
                         <td>
-                          <select name='jouledger' id="jouledger" class="form-control">
-                            <option value=" " selected>Select Ledger</option>
-                        
-                            <option>By party1</option>
-                            <option>To party1</option>
-                            <option>Bank account</option>
-                            <option>Cash</option>
-                            <option>Light bill</option>
-                            <option>Purchase</option>
-                            <option>Rent Paid</option>
+                          <select name='particulars' class="form-control">
+                            <option value=" " selected>List of ledgers</option>
+                            {% for l in purled %}
+                            <option value="{{ l.id }}">{{ l.ledger_name}}</option>
+                            {% endfor %}
+    
                           </select>
                         </td>
                         
@@ -77,7 +78,7 @@
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="text-muted"></div>
+                                <div class="text-muted">NARRATION: <input type="text" name="narration"></div><br>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>

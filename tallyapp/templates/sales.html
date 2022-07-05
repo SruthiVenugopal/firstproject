@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="card-title">
           <center>
-            <h3 class="mb-0" >SALES VOUCHER</h3>
+            <h3 class="mb-0" >TALLY PRIME</h3>
           </center>
         </div>
       </div>
@@ -22,13 +22,18 @@
           <div class="invoice overflow-auto">
             <div class="row">
               <div class="col">
-                <center>
-                  <h2>Tally Prime</h2>
-                </center>
+                <h2 style="text-align: left;">Sales </h2>
+                <h2 style="text-align: right;">Date:{% now "d-M-Y" %}</h2>
               </div>
             </div>
             <div class="row mt-4">
                 <div class="table-responsive">
+                  Account:<select class="form-control" name="account">
+                    <option value=" " selected>List of ledgers</option>
+                    {% for l in salacc %}
+                    <option value="{{ l.id }}">{{ l.ledger_name}}</option>
+                    {% endfor %}
+                    </select>
                   <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                       <tr>
@@ -44,23 +49,19 @@
                       <tr>
                         
                         <td>
-                          <select name='jouledger' id="jouledger" class="form-control">
-                            <option value=" " selected>Select Ledger</option>
-                        
-                            <option>By party1</option>
-                            <option>To party1</option>
-                            <option>Bank account</option>
-                            <option>Cash</option>
-                            <option>Light bill</option>
-                            <option>Purchase</option>
-                            <option>Rent Paid</option>
+                          <select name='particulars' class="form-control">
+                            <option value=" " selected>List of ledgers</option>
+                            {% for l in payled %}
+                            <option value="{{ l.id }}">{{ l.ledger_name}}</option>
+                            {% endfor %}
+    
                           </select>
                         </td>
                         
-                        <td><input type="text" name='item' id="item" placeholder='item name' class="form-control price"/></td>
-                        <td><input type="number" name='quantity' id="quantity" placeholder='0.00' class="form-control total" /></td>
-                        <td><input type="number" name='rate' id="rate" placeholder='0.00' class="form-control total" /></td>
-                        <td><input type="number" name='amount' id="amount" placeholder='0.00' class="form-control total" /></td>
+                        <td><input type="text" name='item' id="item" placeholder='item name' class="form-control"/></td>
+                        <td><input type="number" name='quantity' id="quantity" placeholder='0.00' class="form-control" /></td>
+                        <td><input type="number" name='rate' id="rate" placeholder='0.00' class="form-control" /></td>
+                        <td><input type="number" name='amount' id="amount" placeholder='0.00' class="form-control" /></td>
                     </tr>
                         </tbody></table><div class="row clearfix" style="margin-top:20px">
                             <div class="col-md-7"></div>

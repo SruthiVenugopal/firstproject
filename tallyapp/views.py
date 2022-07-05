@@ -169,7 +169,36 @@ def editjou(request,pk):
     return render(request, 'editjou.html',{'con':con})
 
 def sal(request):
-    return render(request,'sales.html')
+    salacc=Ledger.objects.filter(group_under='bankaccounts')
+    salled=Ledger.objects.filter(group_under='receiptledger')
+    context1={'salacc':salacc,'salled':salled}
+    if request.method =='POST':
+        a=request.POST['account']
+        b=Ledger.objects.get(id=a)
+        c=request.POST['particulars']
+        d=Ledger.objects.get(id=c)
+        amount = request.POST['amount']
+        rate=request.POST['rate']
+        quantity=request.POST['quantity']
+        narration=request.POST['narration']
+        try:
+            con=journal.objects.all().last()
+            no=con.no+1
+        except:
+            no=1
+        con=sales(#date=date,
+                    narration=narration,
+                    no=no,
+                    account=b,
+                    particulars=d,
+                    rate=rate,
+                    quantity=quantity)
+                    
+        con.save()
+        print("hii")
+        con=con.id
+        return redirect('editsale',con)
+    return render(request,'sales.html',context1)
 def pur(request):
     return render(request,'purchase.html')
 def daybook(request):

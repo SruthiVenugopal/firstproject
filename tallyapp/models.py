@@ -106,6 +106,64 @@ class journal(models.Model):
             self.no += 1
         return self. account
 
+class sales(models.Model):
+    narration=models.CharField(max_length=30)
+    transchoice=[
+        ('cheque/dd', 'Cheque/dd'),
+        ('atm', 'Atm'),
+        ('card', 'Card'),
+        ('cash', 'Cash'),
+        ('e-fund-transfer', 'E-fund-transfer'),
+        ('others', 'Others')
+        ]
+    transactiontype=models.CharField(max_length=30,choices=transchoice,default='cheque/dd')
+    instno=models.PositiveIntegerField(default=5656,null=False)
+    instdate=models.CharField(max_length=255,default='24Mar2022',null=False)
+    date=models.DateField(auto_now=True)
+    no=models.PositiveIntegerField(default=0,null=False)
+    item=models.CharField(max_length=255)
+    quantity=models.IntegerField()
+    rate=models.IntegerField()
+    account=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='salacc')
+    particulars=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='salled')
+    def __str__(self):
+        if self.pk:
+            self.no += 1
+        return self. account
+    @property
+    def get_amount(self):
+        amount=self.quantity*self.rate
+        return self.amount
+
+class purchase(models.Model):
+    narration=models.CharField(max_length=30)
+    transchoice=[
+        ('cheque/dd', 'Cheque/dd'),
+        ('atm', 'Atm'),
+        ('card', 'Card'),
+        ('cash', 'Cash'),
+        ('e-fund-transfer', 'E-fund-transfer'),
+        ('others', 'Others')
+        ]
+    transactiontype=models.CharField(max_length=30,choices=transchoice,default='cheque/dd')
+    instno=models.PositiveIntegerField(default=5656,null=False)
+    instdate=models.CharField(max_length=255,default='24Mar2022',null=False)
+    date=models.DateField(auto_now=True)
+    no=models.PositiveIntegerField(default=0,null=False)
+    item=models.CharField(max_length=255)
+    quantity=models.IntegerField()
+    rate=models.IntegerField()
+    account=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='puracc')
+    particulars=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='purled')
+    def __str__(self):
+        if self.pk:
+            self.no += 1
+        return self. account
+    @property
+    def get_amount(self):
+        amount=self.rate*self.quantity
+        return self.amount
+
 
 
 
