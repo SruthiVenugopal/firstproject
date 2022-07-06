@@ -132,8 +132,13 @@ class sales(models.Model):
         return self. account
     @property
     def get_amount(self):
-        amount=self.quantity*self.rate
+        self.amount=self.quantity*self.rate
         return self.amount
+    # def save(self, *args, **kwargs):
+    #     if self.pk:
+    #         self.no += 1
+    #     self.amount = self.quantity * self.rate
+    #     super(sales, self).save(*args, **kwargs)
 
 class purchase(models.Model):
     narration=models.CharField(max_length=30)
@@ -153,16 +158,20 @@ class purchase(models.Model):
     item=models.CharField(max_length=255)
     quantity=models.IntegerField()
     rate=models.IntegerField()
+    #amount=models.PositiveIntegerField()
     account=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='puracc')
     particulars=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='purled')
     def __str__(self):
-        if self.pk:
-            self.no += 1
         return self. account
     @property
     def get_amount(self):
-        amount=self.rate*self.quantity
+        self.amount=self.rate*self.quantity
         return self.amount
+    # def save(self, *args, **kwargs):
+    #     if self.pk:
+    #         self.no += 1
+    #     self.amount = self.quantity * self.rate
+    #     super(purchase, self).save(*args, **kwargs)
 
 
 

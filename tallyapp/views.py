@@ -177,10 +177,10 @@ def sal(request):
         b=Ledger.objects.get(id=a)
         c=request.POST['particulars']
         d=Ledger.objects.get(id=c)
-        amount = request.POST['amount']
         rate=request.POST['rate']
         quantity=request.POST['quantity']
         narration=request.POST['narration']
+        amount=rate*quantity
         try:
             con=journal.objects.all().last()
             no=con.no+1
@@ -197,16 +197,22 @@ def sal(request):
         con.save()
         print("hii")
         con=con.id
-        return redirect('editsale',con)
+        return redirect('/')
     return render(request,'sales.html',context1)
 def pur(request):
     return render(request,'purchase.html')
 def daybook(request):
+    # if request.method=="POST":
+    #     fromdate=request.POST.get('fromdate')
+    #     todate=request.POST.get('todate')
+    #     searchresult=
     con=contra.objects.all()
     pay=payment.objects.all()
     rec=receipt.objects.all()
     jou=journal.objects.all()
-    context={'con':con,'pay':pay,'rec':rec,'jou':jou}
+    sal=sales.objects.all()
+    pur=purchase.objects.all()
+    context={'con':con,'pay':pay,'rec':rec,'jou':jou,'sal':sal,'pur':pur}
     return render(request,'daybook.html',context)
 def daybookcon(request):
     con=contra.objects.all()
