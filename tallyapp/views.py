@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Ledger,contra,payment,receipt,journal
+from .models import Ledger,contra,payment,receipt,journal,sales,purchase
 from datetime import datetime,date
 
 # Create your views here.
@@ -180,9 +180,9 @@ def sal(request):
         rate=request.POST['rate']
         quantity=request.POST['quantity']
         narration=request.POST['narration']
-        amount=rate*quantity
+        amount=request.POST['amount']
         try:
-            con=journal.objects.all().last()
+            con=sales.objects.all().last()
             no=con.no+1
         except:
             no=1
@@ -192,20 +192,71 @@ def sal(request):
                     account=b,
                     particulars=d,
                     rate=rate,
-                    quantity=quantity)
+                    quantity=quantity,
+                    amount=amount)
                     
         con.save()
         print("hii")
         con=con.id
-        return redirect('/')
+        return redirect('editsal',con)
     return render(request,'sales.html',context1)
+
+def editsal(request,pk):
+    con=sales.objects.get(id=pk)
+    if  request.method=='POST':
+        con = sales.objects.get(id=pk)
+        con.transactiontype = request.POST.get('transactiontype')
+        if con.transactiontype =="ATM":
+            con.instno=5657
+            con.instdate="25Mar2022"
+            con.save()
+        return redirect('index')
+    return render(request, 'editsal.html',{'con':con})
 def pur(request):
-    return render(request,'purchase.html')
+    puracc=Ledger.objects.filter(group_under='bankaccounts')
+    purled=Ledger.objects.filter(group_under='receiptledger')
+    context1={'puracc':puracc,'purled':purled}
+    if request.method =='POST':
+        a=request.POST['account']
+        b=Ledger.objects.get(id=a)
+        c=request.POST['particulars']
+        d=Ledger.objects.get(id=c)
+        rate=request.POST['rate']
+        quantity=request.POST['quantity']
+        narration=request.POST['narration']
+        amount=request.POST['amount']
+        try:
+            con=purchase.objects.all().last()
+            no=con.no+1
+        except:
+            no=1
+        con=purchase(#date=date,
+                    narration=narration,
+                    no=no,
+                    account=b,
+                    particulars=d,
+                    rate=rate,
+                    quantity=quantity,
+                    amount=amount)
+                    
+        con.save()
+        print("hii")
+        con=con.id
+        return redirect('editpur',con)
+    return render(request,'purchase.html',context1)
+
+def editpur(request,pk):
+    con=purchase.objects.get(id=pk)
+    if  request.method=='POST':
+        con = purchase.objects.get(id=pk)
+        con.transactiontype = request.POST.get('transactiontype')
+        if con.transactiontype =="ATM":
+            con.instno=5657
+            con.instdate="25Mar2022"
+            con.save()
+        return redirect('index')
+    return render(request, 'editpur.html',{'con':con})
 def daybook(request):
-    # if request.method=="POST":
-    #     fromdate=request.POST.get('fromdate')
-    #     todate=request.POST.get('todate')
-    #     searchresult=
     con=contra.objects.all()
     pay=payment.objects.all()
     rec=receipt.objects.all()
@@ -230,6 +281,14 @@ def daybookjou(request):
     jou=journal.objects.all()
     context={'jou':jou}
     return render(request,'daybookjou.html',context)
+def daybooksal(request):
+    sal=sales.objects.all()
+    context={'sal':sal}
+    return render(request,'daybooksal.html',context)
+def daybookpur(request):
+    pur=purchase.objects.all()
+    context={'pur':pur}
+    return render(request,'daybookpur.html',context)
 def delcon(request,pk):
     a=contra.objects.get(id=pk)
     a.delete()
@@ -244,5 +303,13 @@ def delrec(request,pk):
     return redirect('daybook')
 def deljou(request,pk):
     a=journal.objects.get(id=pk)
+    a.delete()
+    return redirect('daybook')
+def delsal(request,pk):
+    a=sales.objects.get(id=pk)
+    a.delete()
+    return redirect('daybook')
+def delpur(request,pk):
+    a=purchase.objects.get(id=pk)
     a.delete()
     return redirect('daybook')

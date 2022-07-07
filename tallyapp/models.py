@@ -124,16 +124,14 @@ class sales(models.Model):
     item=models.CharField(max_length=255)
     quantity=models.IntegerField()
     rate=models.IntegerField()
+    amount=models.PositiveIntegerField(default=0)
     account=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='salacc')
     particulars=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='salled')
     def __str__(self):
         if self.pk:
             self.no += 1
         return self. account
-    @property
-    def get_amount(self):
-        self.amount=self.quantity*self.rate
-        return self.amount
+   
     # def save(self, *args, **kwargs):
     #     if self.pk:
     #         self.no += 1
@@ -158,15 +156,15 @@ class purchase(models.Model):
     item=models.CharField(max_length=255)
     quantity=models.IntegerField()
     rate=models.IntegerField()
-    #amount=models.PositiveIntegerField()
+    amount=models.PositiveIntegerField(default=0)
     account=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='puracc')
     particulars=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='purled')
     def __str__(self):
         return self. account
-    @property
-    def get_amount(self):
-        self.amount=self.rate*self.quantity
-        return self.amount
+    # @property
+    # def get_amount(self):
+    #     self.amount=self.rate*self.quantity
+    #     return self.amount
     # def save(self, *args, **kwargs):
     #     if self.pk:
     #         self.no += 1

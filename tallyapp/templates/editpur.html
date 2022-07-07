@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="/editpay/{{con.pk}}" method="POST" class="post-form">
+<form action="/editpur/{{con.pk}}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -90,12 +90,4 @@
                   </div>
                 </div>
               </form>
-              <!-- <script>
-                function getamount(){
-                a=document.getElementById('transactiontype').value;
-                if (a="ATM"):
-                document.getElementById('instno').value=5657;
-                document.getElementById('instdate').value="25Mar2022";
-                }
-                </script>  -->
 {% endblock %}
