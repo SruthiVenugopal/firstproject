@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="{% url 'index' %}" method="POST" class="post-form">
+<form action="{% url 'daybook' %}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -24,7 +24,9 @@
               <div class="col">
                 <center>
                   <h2>DAY BOOK</h2>
-                  
+                  startdate:<input type="date" name="fromdate">
+                  enddate:<input type="date" name="todate">
+                  <input type="submit" value="Search">
                 </center>
               </div>
             </div>
@@ -111,9 +113,9 @@
                           <div class="row mt-4">
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
-                              <button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
+                              <!--<button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
                                 OK
-                              </button>
+                              </button>-->
                             </div>
                           </div>
                           <div class="row mt-3">

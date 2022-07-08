@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="{% url 'daybookcon' %}" method="POST" class="post-form">
+<form action="{% url 'index' %}" method="POST" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -42,12 +42,12 @@
                     </thead>
                     <tbody>
                       
-                        {% for i in con %}
+                        {% for i in pur %}
                         <tr>
                         <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
-                        <td>Contra Voucher</td>
+                        <td>Purchase Voucher</td>
                         <td>{{i.amount}}</td>
                     
                       </tr>

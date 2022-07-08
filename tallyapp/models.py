@@ -132,12 +132,6 @@ class sales(models.Model):
             self.no += 1
         return self. account
    
-    # def save(self, *args, **kwargs):
-    #     if self.pk:
-    #         self.no += 1
-    #     self.amount = self.quantity * self.rate
-    #     super(sales, self).save(*args, **kwargs)
-
 class purchase(models.Model):
     narration=models.CharField(max_length=30)
     transchoice=[
@@ -161,15 +155,6 @@ class purchase(models.Model):
     particulars=models.ForeignKey(Ledger,on_delete=models.CASCADE,blank=False,related_name='purled')
     def __str__(self):
         return self. account
-    # @property
-    # def get_amount(self):
-    #     self.amount=self.rate*self.quantity
-    #     return self.amount
-    # def save(self, *args, **kwargs):
-    #     if self.pk:
-    #         self.no += 1
-    #     self.amount = self.quantity * self.rate
-    #     super(purchase, self).save(*args, **kwargs)
 
 
 

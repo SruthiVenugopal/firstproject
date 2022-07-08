@@ -90,4 +90,30 @@
                   </div>
                 </div>
               </form>
+              <script>
+                function getinst(){
+                var a=document.getElementById('transactiontype').value;
+                if (a=="ATM"){
+                document.getElementById('instno').value=6657;
+                document.getElementById('instdate').value="25Apr2022";
+                }
+                else if(a=="cheque/dd"){
+                  document.getElementById('instno').value=5657;
+                  document.getElementById('instdate').value="24Mar2022";
+                }
+                else if (a == "Card"){
+                document.getElementById('instno').value=7657;
+                document.getElementById('instdate').value="25May2022"; 
+                }
+                else if (a == "Cash"){
+                document.getElementById('instno').value=8657;
+                document.getElementById('instdate').value="25Jun2022"; 
+                }
+                else if (a == "Others"){
+                document.getElementById('instno').value=9657;
+                document.getElementById('instdate').value="25Jul2022"; 
+                }
+                
+              }
+            </script> 
 {% endblock %}
