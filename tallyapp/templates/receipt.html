@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="{% url 'rec' %}" method="POST" class="post-form">
+<form action="{% url 'rec' %}" method="POST" id="newform" class="post-form">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -65,7 +65,7 @@
                             
                           </div>
                           <div class="row mt-4">
-                            <div class="col-md-10"></div>
+                            <div class="col-md-10"><input class="btn btn-outline-info w-15 rounded-pill text-light" type="button" onclick="newFunction()" value="Delete"></div>
                             <div class="col-md-2">
                               <button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
                                 Save
@@ -75,7 +75,7 @@
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="text-muted">NARRATION: <input type="text" name="narration"></div><br>
+                                <div class="form-control">NARRATION: <input type="text" name="narration"></div><br>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>
@@ -89,4 +89,9 @@
                   </div>
                 </div>
               </form>
+              <script>
+                function newFunction() {
+            document.getElementById("newform").reset();
+         }
+              </script>
 {% endblock %}

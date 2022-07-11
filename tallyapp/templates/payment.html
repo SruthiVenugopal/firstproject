@@ -49,7 +49,7 @@
                         <tr>
                           
                           <td>
-                            <select name='particulars' class="form-control">
+                            <select name='particulars' class="form-control" id="newform">
                               <option value=" " selected>List of ledgers</option>
                               {% for l in payled %}
                               <option value="{{ l.id }}">{{ l.ledger_name}}</option>
@@ -66,7 +66,7 @@
                             
                           </div>
                           <div class="row mt-4">
-                            <div class="col-md-10"></div>
+                            <div class="col-md-10"><input class="btn btn-outline-info w-15 rounded-pill text-light" type="button" onclick="newFunction()" value="Delete"></div>
                             <div class="col-md-2">
                               <button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
                                 Save
@@ -76,7 +76,7 @@
                           <div class="row mt-3">
                             <div class="col-md-10">
                               <div class="notices">
-                                <div class="text-muted">NARRATION: <input type="text" name="narration"></div><br>
+                                <div class="form-control">NARRATION: <input type="text" name="narration"></div><br>
                                 <div class="notice text-muted">
                                   Tally Prime Terms and Conditions Apply
                                 </div>
@@ -90,4 +90,9 @@
                   </div>
                 </div>
               </form>
+              <script>
+                function newFunction() {
+            document.getElementById("newform").reset();
+         }
+              </script>
 {% endblock %}

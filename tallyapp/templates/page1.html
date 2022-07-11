@@ -4,7 +4,7 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action="{% url 'page1' %}" method="POST" class="post-form">
+<form action="{% url 'page1' %}" method="POST" class="post-form" id="newform">
   {% csrf_token %}
   <div class="page-content">
     <div class="card radius-15">
@@ -38,7 +38,7 @@
                     {% endfor %}
                 </select>
                     <br><br>
-
+                  Current balance :120000
                   <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                       <tr>
@@ -59,7 +59,8 @@
                             <option value="{{l.id}}">{{ l.ledger_name}}</option>
                             {% endfor %}
     
-                          </select>
+                          </select><br>
+                          Current balance : 100000
                         </td>
                         
                         
@@ -69,7 +70,7 @@
                             
                           </div>
                           <div class="row mt-4">
-                            <div class="col-md-10"></div>
+                            <div class="col-md-10"><input class="btn btn-outline-info w-15 rounded-pill text-light" type="button" onclick="newFunction()" value="Delete"></div>
                             <div class="col-md-2">
                               <button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
                                 Save
@@ -93,4 +94,9 @@
                   </div>
                 </div>
               </form>
+              <script>
+                function newFunction() {
+            document.getElementById("newform").reset();
+         }
+              </script>
 {% endblock %}

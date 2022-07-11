@@ -280,31 +280,17 @@
                                 </li>
                                 <li><a href="{% url 'pur' %}"><i class="bx bx-right-arrow-alt"></i>Purchase</a>
                                 </li>
+                                <li><a href="{% url 'others' %}"><i class="bx bx-right-arrow-alt"></i>Others</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:;" class="has-arrow">
+                            <a href="{% url 'daybook' %}" class="has-arrow">
                                 <div class="parent-icon"><i class="bx bx-comment-edit"></i>
                                 </div>
                                 <div class="menu-title">Day Book</div>
                             </a>
-                            <ul>
-                                <li><a href="{% url 'daybook' %}"><i class="bx bx-right-arrow-alt"></i>All</a>
-                                </li>
-                                <li><a href="{% url 'daybookcon' %}"><i class="bx bx-right-arrow-alt"></i>Contra</a>
-                                </li>
-                                <li><a href="{% url 'daybookpay' %}"><i class="bx bx-right-arrow-alt"></i>Payment</a>
-                                </li>
-                                <li><a href="{% url 'daybookrec' %}"><i class="bx bx-right-arrow-alt"></i>Receipt</a>
-                                </li>
-                                <li><a href="{% url 'daybookjou' %}"><i class="bx bx-right-arrow-alt"></i>Journal</a>
-                                </li>
-                                <li><a href="{% url 'daybooksal' %}"><i class="bx bx-right-arrow-alt"></i>Sales</a>
-                                </li>
-                                <li><a href="{% url 'daybookpur' %}"><i class="bx bx-right-arrow-alt"></i>Purchase</a>
-                                </li>
-                            </ul>
-                        </li>
+                            
                         <li>
                             <a href="javascript:;" class="has-arrow">
                                 <div class="parent-icon"><i class='bx bx-wallet'></i>

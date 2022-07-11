@@ -41,7 +41,9 @@ def editcon(request,pk):
         con.instdate=request.POST.get('instdate')
         con.instno=request.POST.get('instno')
         con.save()
-        return redirect('index')
+        print("hii")
+        con=con.id
+        return redirect('')
     return render(request, 'editcon.html',{'con':con})
 
 def pay(request):
@@ -248,71 +250,40 @@ def editpur(request,pk):
     return render(request, 'editpur.html',{'con':con})
 
 def daybook(request):
-    if request.method=="POST":
-        fromdate=request.POST.get('fromdate')
-        todate=request.POST.get('todate')
-        con=contra.objects.filter(date__gte=fromdate,date__lte=todate)
-        pay=payment.objects.filter(date__gte=fromdate,date__lte=todate)
-        rec=receipt.objects.filter(date__gte=fromdate,date__lte=todate)
-        jou=journal.objects.filter(date__gte=fromdate,date__lte=todate)
-        sal=sales.objects.filter(date__gte=fromdate,date__lte=todate)
-        pur=purchase.objects.filter(date__gte=fromdate,date__lte=todate)
-        context={'con':con,'pay':pay,'rec':rec,'jou':jou,'sal':sal,'pur':pur}
-        return render(request,'daybook.html',context)
-    else:
-        con=contra.objects.all()
-        pay=payment.objects.all()
-        rec=receipt.objects.all()
-        jou=journal.objects.all()
-        sal=sales.objects.all()
-        pur=purchase.objects.all()
-        context={'con':con,'pay':pay,'rec':rec,'jou':jou,'sal':sal,'pur':pur}
-        return render(request,'daybook.html',context)
-def daybookcon(request):
-    con=contra.objects.all()
-    context={'con':con}
-    return render(request,'daybookcon.html',context)
-def daybookpay(request):
-    pay=payment.objects.all()
-    context={'pay':pay}
-    return render(request,'daybookpay.html',context)
-def daybookrec(request):
-    rec=receipt.objects.all()
-    context={'rec':rec}
-    return render(request,'daybookrec.html',context)
-def daybookjou(request):
-    jou=journal.objects.all()
-    context={'jou':jou}
-    return render(request,'daybookjou.html',context)
-def daybooksal(request):
-    sal=sales.objects.all()
-    context={'sal':sal}
-    return render(request,'daybooksal.html',context)
-def daybookpur(request):
-    pur=purchase.objects.all()
-    context={'pur':pur}
-    return render(request,'daybookpur.html',context)
+    x=date.today()
+    con=contra.objects.filter(date=x)
+    pay=payment.objects.filter(date=x)
+    rec=receipt.objects.filter(date=x)
+    jou=journal.objects.filter(date=x)
+    sal=sales.objects.filter(date=x)
+    pur=purchase.objects.filter(date=x)
+    context={'con':con,'pay':pay,'rec':rec,'jou':jou,'sal':sal,'pur':pur}
+    return render(request,'daybook.html',context)
+    
 def delcon(request,pk):
     a=contra.objects.get(id=pk)
     a.delete()
-    return redirect('daybook')
+    return redirect('/')
 def delpay(request,pk):
     a=payment.objects.get(id=pk)
     a.delete()
-    return redirect('daybook')
+    return redirect('/')
 def delrec(request,pk):
     a=receipt.objects.get(id=pk)
     a.delete()
-    return redirect('daybook')
+    return redirect('/')
 def deljou(request,pk):
     a=journal.objects.get(id=pk)
     a.delete()
-    return redirect('daybook')
+    return redirect('/')
 def delsal(request,pk):
     a=sales.objects.get(id=pk)
     a.delete()
-    return redirect('daybook')
+    return redirect('/')
 def delpur(request,pk):
     a=purchase.objects.get(id=pk)
     a.delete()
-    return redirect('daybook')
+    return redirect('/')
+def others(request):
+    data=voucher.objects.all()
+    return render(request,'others.html'{'data':data})

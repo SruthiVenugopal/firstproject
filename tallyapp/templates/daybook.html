@@ -24,9 +24,6 @@
               <div class="col">
                 <center>
                   <h2>DAY BOOK</h2>
-                  startdate:<input type="date" name="fromdate">
-                  enddate:<input type="date" name="todate">
-                  <input type="submit" value="Search">
                 </center>
               </div>
             </div>
@@ -41,69 +38,69 @@
                         <th class="text-center">Date</th>
                         <th class="text-center">Voucher type</th>
                         <th class="text-center">Amount</th>
-                        <th class="text-center">Action</th>
+                
                       </tr>
                     </thead>
                     <tbody>
                       
                         {% for i in con %}
-                        <tr>
+                        <tr><a href="{% url 'formcon' i.id %}">
                         <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Contra Voucher</td>
                         <td>{{i.amount}}</td>
-                        <td><a class="btn btn-danger btn-xs" href="{% url 'delcon' i.id  %}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                        </a>
                       </tr>
                        {% endfor %}
                        {% for i in pay %}
-                        <tr>
+                        <tr><a href="{% url 'formpay' i.id %}">
                         <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Payment Voucher</td>
                         <td>{{i.amount}}</td>
-                        <td><a class="btn btn-danger btn-xs" href="{% url 'delpay' i.id  %}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                       </a>
                       </tr>
                        {% endfor %}
                        {% for i in rec %}
-                        <tr>
+                        <tr><a href="{% url 'formrec' i.id %}">
                         <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Receipt Voucher</td>
                         <td>{{i.amount}}</td>
-                        <td><a class="btn btn-danger btn-xs" href="{% url 'delrec' i.id  %}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                        </a>
                       </tr>
                        {% endfor %}
                        {% for i in jou %}
-                        <tr>
+                        <tr><a href="{% url 'formjou' i.id %}">
                         <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Journal Voucher</td>
                         <td>{{i.amount}}</td>
-                        <td><a class="btn btn-danger btn-xs" href="{% url 'deljou' i.id  %}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                        </a>
                       </tr>
                        {% endfor %}
                        {% for i in sal %}
-                       <tr>
+                       <tr><a href="{% url 'formsal' i.id %}">
                         <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Sales Voucher</td>
                         <td>{{i.amount}}</td>
-                        <td><a class="btn btn-danger btn-xs" href="{% url 'delsal' i.id  %}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                        </a>
                       </tr>
                       {% endfor %}
                       {% for i in pur %}
-                       <tr>
+                       <tr><a href="{% url 'formpur' i.id %}">
                         <td>{{i.particulars.ledger_name}}</td>
                         <td>{{i.no}}</td>
                         <td>{{i.date}}</td>
                         <td>Purchase Voucher</td>
                         <td>{{i.amount}}</td>
-                        <td><a class="btn btn-danger btn-xs" href="{% url 'delpur' i.id  %}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                        </a>
                       </tr>
                       {% endfor %}
                         </tbody></table><div class="row clearfix" style="margin-top:20px">
