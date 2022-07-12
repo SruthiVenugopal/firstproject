@@ -284,6 +284,6 @@ def delpur(request,pk):
     a=purchase.objects.get(id=pk)
     a.delete()
     return redirect('/')
-def others(request):
-    data=voucher.objects.all()
-    return render(request,'others.html'{'data':data})
+def voucher(request):
+    #data=VoucherModels.objects.all()
+    return render(request,'voucher.html')

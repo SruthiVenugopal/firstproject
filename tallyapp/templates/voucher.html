@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{% block body %}
+    {% load static %}
+    <style>
+        .container{
+            
+            display: flex;
+            height:20vh;
+            align-items: center;
+            justify-content: center;
+            
+        }
+    .form1{
+        height: 660px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        
+    }
+    form{
+        padding:30px;
+        width: 350px;
+        height: 270px;
+    }
+    .close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+        
+    }
+    button{
+        background-color:rgb(103, 175, 220) ;
+        color:white;
+        padding:10px 20px;
+    }
+</style>
+
+    
+<div class="container">
+<div class="form1"style=" background-color:rgba(0,0,0,0.3);">
+    <a href="javascript:history.go(-1);" class="close">+</a>
+    <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">List of Voucher types</h5>
+    <form action="" method="post">
+    
+        
+        <a href="#"><h8 >Create</h8></a><br>
+        
+        <a href="{% url 'index' %}"><h8>Back</h8></a><br>
+        
+        <hr>
+        <a href="#"><b><h6 style="text-align:left;">Accounting Vouchers</h6></b></a>
+        <a href="{% url 'page1' %}"><h8 style="text-align:left;">Contra</h8></a><br>
+        <a href="#"><h8 style="text-align:left;">Credit Note</h8></a><br>
+        <a href="#"><h8 style="text-align:left;">Debit Note</h8></a><br>
+        <a href="{% url 'jou' %}"><h8 style="text-align:left;">Journal</h8></a><br>
+        <a href="{% url 'pay' %}"><h8 style="text-align:left;">Payment</h8></a><br>
+        <a href="{% url 'pur' %}"><h8 style="text-align:left;">Purchase</h8></a><br>
+        <a href="{% url 'rec' %}"><h8 style="text-align:left;">Receipt</h8></a><br>
+        <a href="{% url 'sal' %}"><h8 style="text-align:left;">Sales</h8></a><br>
+        <a href="#"><b><h6 style="text-align:left;">Inventory Vouchers</h6></b></a>
+        <a href="#"><h8 style="text-align:left;">Physical Stock</h8></a><br>
+        <a href="#"><h8 style="text-align:left;">Stock Journal</h8></a><br>
+        <a href="#"><b><h6 style="text-align:left;">Payroll Vouchers</h6></b></a>
+        <a href="#"><h8 style="text-align:left;">Attendence</h8></a><br>
+        <a href="#"><h8 style="text-align:left;">Payroll</h8></a><br>  
+        {% for p in data %}
+            <a href="#"><h8 style="text-align:left;">{{p.voucher_name}}</h8></a><br>
+        {% endfor %}
+        </form>
+</div>     
+</div>
+{% endblock %}

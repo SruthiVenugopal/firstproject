@@ -20,6 +20,7 @@ urlpatterns=[
     path('delrec/<int:pk>',views.delrec,name='delrec'),
     path('deljou/<int:pk>',views.deljou,name='deljou'),
     path('delsal/<int:pk>',views.delsal,name='delsal'),
-    path('delpur/<int:pk>',views.delpur,name='delpur')
+    path('delpur/<int:pk>',views.delpur,name='delpur'),
+    path('voucher',views.voucher,name='voucher')
 ]
    
