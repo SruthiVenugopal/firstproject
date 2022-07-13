@@ -21,6 +21,9 @@ urlpatterns=[
     path('deljou/<int:pk>',views.deljou,name='deljou'),
     path('delsal/<int:pk>',views.delsal,name='delsal'),
     path('delpur/<int:pk>',views.delpur,name='delpur'),
-    path('voucher',views.voucher,name='voucher')
+    path('voucher',views.voucher,name='voucher'),
+    path('debnot',views.debnot,name='debnot'),
+    path('crednot',views.crednot,name='crednot'),
+    path('createvoucher',views.createvoucher,name='createvoucher')
 ]
    

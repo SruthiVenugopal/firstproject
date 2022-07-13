@@ -287,3 +287,9 @@ def delpur(request,pk):
 def voucher(request):
     #data=VoucherModels.objects.all()
     return render(request,'voucher.html')
+def debnot(request):
+    return render(request,'debitnote.html')
+def crednot(request):
+    return render(request,'creditnote.html')
+def createvoucher(request):
+    return render(request,'createvoucher.html')

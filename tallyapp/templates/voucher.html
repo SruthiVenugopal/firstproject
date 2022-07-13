@@ -50,15 +50,15 @@
     <form action="" method="post">
     
         
-        <a href="#"><h8 >Create</h8></a><br>
+        <a href="{% url 'createvoucher' %}"><h8 >Create</h8></a><br>
         
         <a href="{% url 'index' %}"><h8>Back</h8></a><br>
         
         <hr>
         <a href="#"><b><h6 style="text-align:left;">Accounting Vouchers</h6></b></a>
         <a href="{% url 'page1' %}"><h8 style="text-align:left;">Contra</h8></a><br>
-        <a href="#"><h8 style="text-align:left;">Credit Note</h8></a><br>
-        <a href="#"><h8 style="text-align:left;">Debit Note</h8></a><br>
+        <a href="{% url 'crednot' %}"><h8 style="text-align:left;">Credit Note</h8></a><br>
+        <a href="{% url 'debnot' %}"><h8 style="text-align:left;">Debit Note</h8></a><br>
         <a href="{% url 'jou' %}"><h8 style="text-align:left;">Journal</h8></a><br>
         <a href="{% url 'pay' %}"><h8 style="text-align:left;">Payment</h8></a><br>
         <a href="{% url 'pur' %}"><h8 style="text-align:left;">Purchase</h8></a><br>
