@@ -291,5 +291,9 @@ def debnot(request):
     return render(request,'debitnote.html')
 def crednot(request):
     return render(request,'creditnote.html')
+def payr(request):
+    return render(request,'payroll.html')
+def atten(request):
+    return render(request,'attendance.html')
 def createvoucher(request):
     return render(request,'createvoucher.html')

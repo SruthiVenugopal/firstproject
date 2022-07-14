@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% block body %}
+{% load static %}
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<form action="{% url 'page1' %}" method="POST" class="post-form" id="newform">
+  {% csrf_token %}
+  <div class="page-content">
+    <div class="card radius-15">
+      <div class="card-body">
+        <div class="card-title">
+          <center>
+            <h3 class="mb-0" >TALLY PRIME</h3>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div class="card radius-15">
+      <div class="card-body">
+        <div id="sales">
+          <div class="invoice overflow-auto">
+            <div class="row">
+              <div class="col">
+                
+                  <h2 style="text-align: left;">Payroll</h2>
+                  <h2 style="text-align: right;">{% now "d-M-Y" %}</h2>
+                  
+              </div>
+            </div>
+            <div class="row mt-4">
+                <div class="table-responsive">
+                  
+                  ACCOUNT :<select class="form-control" name="account">
+                    <option value=" " selected>List of ledger accounts</option>
+                    {% for i in conled %}
+                    <option value="{{i.id}}">{{ i.ledger_name}}</option>
+                    {% endfor %}
+                </select>
+                    <br><br>
+                  Current balance :120000
+                  <table class="table table-bordered table-hover" id="tab_logic">
+                    <thead>
+                      <tr>
+                        
+                        <th class="text-center">Particulars</th>
+                        
+                        <th class="text-center">Amount</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td>
+                          <select name='particulars' class="form-control">
+                            <option value=" " selected>List of ledger accounts</option>
+                            {% for l in conled %}
+                            <option value="{{l.id}}">{{ l.ledger_name}}</option>
+                            {% endfor %}
+    
+                          </select><br>
+                          Current balance : 100000
+                        </td>
+                        
+                        
+                        <td><input type="number" name='amount' id="amount" placeholder='0.00' class="form-control" /></td></tr>
+                        </tbody></table><div class="row clearfix" style="margin-top:20px">
+                            <div class="col-md-7"></div>
+                            
+                          </div>
+                          <div class="row mt-4">
+                            <div class="col-md-10"><input class="btn btn-outline-info w-15 rounded-pill text-light" type="button" onclick="newFunction()" value="Delete"></div>
+                            <div class="col-md-2">
+                              <button type="submit" class="btn btn-outline-info w-100 rounded-pill text-light">
+                                Save
+                              </button>
+                            </div>
+                          </div>
+                          <div class="row mt-3">
+                            <div class="col-md-10">
+                              <div class="notices">
+                                <div class="form-control">NARRATION: <input type="text" name="narration"></div><br>
+                                <div class="notice text-muted">
+                                  Tally Prime Terms and Conditions Apply
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <script>
+                function newFunction() {
+            document.getElementById("newform").reset();
+         }
+              </script>
+{% endblock %}

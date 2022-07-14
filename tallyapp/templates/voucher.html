@@ -68,8 +68,8 @@
         <a href="#"><h8 style="text-align:left;">Physical Stock</h8></a><br>
         <a href="#"><h8 style="text-align:left;">Stock Journal</h8></a><br>
         <a href="#"><b><h6 style="text-align:left;">Payroll Vouchers</h6></b></a>
-        <a href="#"><h8 style="text-align:left;">Attendence</h8></a><br>
-        <a href="#"><h8 style="text-align:left;">Payroll</h8></a><br>  
+        <a href="{% url 'atten' %}"><h8 style="text-align:left;">Attendence</h8></a><br>
+        <a href="{% url 'payr' %}"><h8 style="text-align:left;">Payroll</h8></a><br>  
         {% for p in data %}
             <a href="#"><h8 style="text-align:left;">{{p.voucher_name}}</h8></a><br>
         {% endfor %}

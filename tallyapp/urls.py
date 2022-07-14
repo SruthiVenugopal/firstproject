@@ -24,6 +24,8 @@ urlpatterns=[
     path('voucher',views.voucher,name='voucher'),
     path('debnot',views.debnot,name='debnot'),
     path('crednot',views.crednot,name='crednot'),
+    path('payr',views.payr,name='payr'),
+    path('atten',views.atten,name='atten'),
     path('createvoucher',views.createvoucher,name='createvoucher')
 ]
    
