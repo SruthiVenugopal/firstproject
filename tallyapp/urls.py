@@ -26,6 +26,7 @@ urlpatterns=[
     path('crednot',views.crednot,name='crednot'),
     path('payr',views.payr,name='payr'),
     path('atten',views.atten,name='atten'),
-    path('createvoucher',views.createvoucher,name='createvoucher')
+    path('createvoucher',views.createvoucher,name='createvoucher'),
+    path('stockjou',views.stockjou,name='stockjou')
 ]
    

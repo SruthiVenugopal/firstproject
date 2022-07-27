@@ -1,0 +1,387 @@
+{% extends 'index.html' %}
+{% block body %}
+{% load static %}
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .flexy{
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        
+        
+    }
+    .flex{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        
+        
+    }
+    .left{
+        border: 2px solid ;
+    }
+    .right{
+        border-top: 2px solid ;
+        border-right: 2px solid;
+        border-bottom:  2px solid;
+    }
+    .tbody{
+        height:50vh;
+    }
+    .top{
+        border-bottom:  2px solid; 
+    }
+.groups:hover{
+    background-color: orange;
+color: white;
+    
+}
+.footers{
+  
+   border-top: 1px solid white;
+}
+.stock_summary{
+    background-color:rgba(0,0,0,.3);
+}
+.bdrl{
+    border-right: 1px solid;
+}
+.bdrr{
+    border-left: 1px solid;
+}
+.bdrb{
+    border-bottom: 1px solid;
+}
+.ctnr{
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+
+}
+.height{
+    height: 45vh;
+}
+</style>
+<div class="item_vouchers p-0 m-0" style="background-color:rgba(0,0,0,.3);">
+    <h5 class="p-2 m-0 text-light text-center bg-info">Stock Journal</h5>
+<div class="container-fluid ctnr p-0 m-0">
+    <div class="row container-fluid head1 bdrb p-0 m-0">
+
+        <div class="col-6 p-0 m-0 ">
+            Stock Items : <h6>Item 1</h6>
+        </div>
+
+        <div class="col-6 p-0 m-0 flexy">
+           <h6 class="px-2">1-Apr-22 to 30-Apr-22</h6>
+        </div>
+
+    </div>
+
+    <div class="row  container-fluid head1 m-0 p-0 bdrb text-center">
+        <div class="col-1 flex">
+            <h6>Date</h6>
+        </div>
+
+        <div class="col-2 flex">
+            <h6>Particular</h6>
+        </div>
+
+        <div class="col-1 flex">
+            <h6>Vch Type</h6>
+        </div>
+
+        <div class="col-1 bdrl flex">
+            <h6>Vch No</h6>
+        </div>
+
+        <div class="col-7 row container-fluid p-0 m-0">
+            <div class="col-4 p-0 bdrl m-0">
+                <h6 class="p-0 m-0">Inwards</h6>
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">Quantity</p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">Value</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 p-0 m-0 bdrl">
+                <h6 class="p-0 m-0 p-0 m-0">Outwards</h6>
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">Quantity</p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">Value</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4 p-0 m-0">
+                <h6 class="p-0 m-0">Closing Balance</h6>
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                       <p class="p-0 m-0">Quantity</p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">Value</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+
+
+
+    </div>
+
+<a href="load_voucher_receipt">
+    <div class="row  container-fluid head1 m-0 p-0 groups text-center">
+        <div class="col-1 flex">
+            <h6>1-April-22</h6>
+        </div>
+
+        <div class="col-2 flex">
+            <h6>ABC stores</h6>
+        </div>
+
+        <div class="col-1 flex">
+            <h6>Purchace</h6>
+        </div>
+
+        <div class="col-1 bdrl flex">
+            <h6></h6>
+        </div>
+
+        <div class="col-7 row container-fluid p-0 m-0">
+            <div class="col-4 p-0 bdrl m-0">
+               
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">120 Nos</p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">1400.0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 p-0 m-0 bdrl">
+               
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4 p-0 m-0">
+                
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                       <p class="p-0 m-0"></p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+
+
+
+    
+    <div class="row  container-fluid head1 m-0 p-0 groups text-center">
+        <div class="col-1 flex">
+            <h6>1-April-22</h6>
+        </div>
+
+        <div class="col-2 flex">
+            <h6>XYZ Industries</h6>
+        </div>
+
+        <div class="col-1 flex">
+            <h6>Sales</h6>
+        </div>
+
+        <div class="col-1 bdrl flex">
+            <h6></h6>
+        </div>
+
+        <div class="col-7 row container-fluid p-0 m-0">
+            <div class="col-4 p-0 bdrl m-0">
+               
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 p-0 m-0 bdrl">
+               
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">50 Nos</p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">1250.0</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4 p-0 m-0">
+                
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                       <p class="p-0 m-0">70 Nos</p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0">840.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row  container-fluid head1 m-0 p-0 height text-center">
+        <div class="col-1 flex">
+            <h6></h6>
+        </div>
+
+        <div class="col-2 flex">
+            <h6></h6>
+        </div>
+
+        <div class="col-1 flex">
+            <h6></h6>
+        </div>
+
+        <div class="col-1 bdrl flex">
+            <h6></h6>
+        </div>
+
+        <div class="col-7 row container-fluid p-0 m-0">
+            <div class="col-4 p-0 bdrl m-0">
+               
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 p-0 m-0 bdrl">
+               
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4 p-0 m-0">
+                
+                <div class="row container-fluid p-0 m-0">
+                    <div class="col-sm-6 p-0 m-0">
+                       <p class="p-0 m-0"></p> 
+                    </div>
+                    <div class="col-sm-6 p-0 m-0">
+                        <p class="p-0 m-0"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="row  container-fluid head1 m-0 p-0 bdrb bdrl bdrr text-center">
+    
+    <div class="col-5 flex">
+        <h6>Total as per default valuation :</h6>
+    </div>
+
+
+    <div class="col-7 row container-fluid p-0 m-0">
+        <div class="col-4 p-0 bdrl m-0">
+           
+            <div class="row container-fluid p-0 m-0">
+                <div class="col-sm-6 p-0 m-0">
+                    <p class="p-0 m-0"></p> 
+                </div>
+                <div class="col-sm-6 p-0 m-0">
+                    <p class="p-0 m-0"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 p-0 m-0 bdrl">
+           
+            <div class="row container-fluid p-0 m-0">
+                <div class="col-sm-6 p-0 m-0">
+                    <p class="p-0 m-0">50 Nos</p> 
+                </div>
+                <div class="col-sm-6 p-0 m-0">
+                    <p class="p-0 m-0">1250.0</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-4 p-0 m-0">
+            
+            <div class="row container-fluid p-0 m-0">
+                <div class="col-sm-6 p-0 m-0">
+                   <p class="p-0 m-0">70 Nos</p> 
+                </div>
+                <div class="col-sm-6 p-0 m-0">
+                    <p class="p-0 m-0">840.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>  
+{% endblock %}

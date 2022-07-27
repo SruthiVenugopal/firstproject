@@ -34,6 +34,13 @@
                     <option value="{{ l.id }}">{{ l.ledger_name}}</option>
                     {% endfor %}
                     </select><br>
+                    Ledger Account : <select name='particulars' class="form-control">
+                      <option value=" " selected>List of ledgers</option>
+                      {% for l in salled %}
+                      <option value="{{ l.id }}">{{ l.ledger_name}}</option>
+                      {% endfor %}
+
+                    </select>
                   <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                       <tr>
@@ -48,15 +55,7 @@
                     <tbody>
                       <tr>
                         
-                        <td>
-                          <select name='particulars' class="form-control">
-                            <option value=" " selected>List of ledgers</option>
-                            {% for l in salled %}
-                            <option value="{{ l.id }}">{{ l.ledger_name}}</option>
-                            {% endfor %}
-    
-                          </select>
-                        </td>
+                       
                         
                         <td><input type="text" name='item' id="item" placeholder='item name' class="form-control"/></td>
                         <td><input type="number" name='rate' id="rate" placeholder='0.00' class="form-control" /></td>

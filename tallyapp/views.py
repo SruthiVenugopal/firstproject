@@ -297,3 +297,5 @@ def atten(request):
     return render(request,'attendance.html')
 def createvoucher(request):
     return render(request,'createvoucher.html')
+def stockjou(request):
+    return render(request,'stockjournal.html')

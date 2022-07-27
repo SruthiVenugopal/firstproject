@@ -28,14 +28,14 @@
             </div>
             <div class="row mt-4">
                 <div class="table-responsive">
-                  Party Account name :<select class="form-control" name="account">
+                  Party A/C name :<select class="form-control" name="account">
                     <option value=" " selected>List of ledgers</option>
                     {% for l in salacc %}
                     <option value="{{ l.id }}">{{ l.ledger_name}}</option>
                     {% endfor %}
                     </select><br>
                     
-                      Particulars : <select name='particulars' class="form-control">
+                      Ledger Account : <select name='particulars' class="form-control">
                         <option value=" " selected>List of ledgers</option>
                         {% for l in salled %}
                         <option value="{{ l.id }}">{{ l.ledger_name}}</option>
